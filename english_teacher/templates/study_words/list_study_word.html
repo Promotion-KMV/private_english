@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h3>На этой странице отражены 3 последних словаря которые вы изучали.Вы так же можете воспользоваться поиском для того чтобы найти более старые записи.</h3>
+<br>
+  <div class="d-flex">
+    <form style='max-height: 5vh;' class="d-flex m-3" action="{% url 'english_teacher:list_study_word' %}">
+      <label for="search_date_start">Начальная дата</label>
+      <input name="search_date_start" class="form-control me-2" type="date" placeholder="Поиск по названию" aria-label="Поиск">
+      <label for="search_date_end">Конечная дата</label>
+      <input name="search_date_end" class="form-control me-2" type="date" placeholder="Поиск по названию" aria-label="Поиск">
+      <button class="btn btn-outline-success" type="submit">Поиск</button>
+    </form>
+    <br>
+  </div>
+  {% for list in list_words_name  %}
+      <p><i>Ранее изученные вами слова</i> : <strong>{{list.name}} от {{ list.date_study }}</strong><a href="{% url 'english_teacher:study_words' list.id %}">(Повторить слова)</a></p>
+      <h6>Слова которые вы изучали:</h6>
+      <div style='display: flex;' id="{{list.id}}">
+        {% for i in list.study_word_name.all %}
+            <p>{{i.english_word}} -- {{i.rus_word}}, &nbsp;</p>
+        {% endfor %}
+      </div>
+    <hr>
+  {% endfor %}
+  <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:self_study_words' %}">Создать новый словарь</a></button>
+{% endblock  %}

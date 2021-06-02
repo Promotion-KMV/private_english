@@ -1,0 +1,269 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'english_teacher/css/style_index.css' %}" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/moment@2.26.0/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <title>Обо мне</title>
+    {% bootstrap_css %}
+</head>
+
+<body>
+
+    <div class="conteiner">
+        <nav class='bg-dark nav_me' id="navbar">
+
+            <a class="nav-link" id="about_me_nav" aria-current="page" href="#"><span class='rus'>Обо мне</span></a>
+            
+            <a class="nav-link" id="lesson_nav" href="#lesson"><span class='rus'>Как проходят занятия</span></a>
+
+            <a class="nav-link" id="my_advantage_nav" href="#advantages"><span class='rus'>О платформе</span></a>
+
+            <a class="nav-link" id="contact_for_me_nav" href="#contact"><span class='rus'>Связаться со мной</span></a>
+
+            <a class="nav-link" id="contact_for_me_nav" href="#price"><span class='rus'>Цены</span></a>
+
+            <a class="nav-link" href="{% url 'account:register' %}"><span class="english">Sign up</span><span class='rus'>Зарегистрироваться</span></a>
+            <a class="nav-link" href="{% url 'account:login' %}"><span class="english">Sign in</span><span class='rus'>Войти</span></a>
+
+        </nav>
+        <div class='about_me'>
+            <h3 class='about_me_text'>Здравствуйте! Меня зовут Анастасия, я репетитор английского языка со стажем более 10лет.</h3>
+            <div class="education">
+                <h4>Мое образование:</h4>
+                <p class="education_text">В 2011 году я закончила Московский Государственный Лингвестический Университет по сепциальности политолог со знанием английского и испанского языка.</p>
+            </div>
+            <div class="experience">
+                <h4>Мой опыт:</h4>
+                <p class="experience_text">C 2008 года я преподаю английский язык как взрослым так и детям школьного возраста.</p>
+            </div>
+            <div class="why_teach">
+                <h4>Почему я преподаю:</h4>
+                <p class="why_teach_text">Я люблю делиться своими знаними и помогать людям развиваться.</p>
+            </div>
+        </div>
+
+        <div class="lesson" id="lesson">
+            <div style="padding-top: 55vh; padding-left: 5vw;">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/3jT_q7dt-cM" frameborder="0" allowfullscreen>
+                </iframe>                
+            </div>
+
+         
+        </div>
+
+        <div class='advantages' id="advantages">
+            <div class='advantages_head' >
+                <h1>Что за платформа?</h1>
+            </div>
+            <div style='display: flex; flex-direction: column;' class="advantages_text">
+                <p class="advantages_text_first"><span class="text_one">Обучение на платформе осуществляется по принципу персонального занятия с учеником.</span></p>
+                <div style="display: flex; align-items: flex-end; flex-direction: column;">
+                    <p class="advantages_text_second"><span  class='text_two'>На нашей платформе собрано большое кол-во материалов. Это и учебники иностранных издательств, аудио файлы, видео материалы. Так же нами была произведена работа по съемке всех необходимых уроков по основным временным формам  в английском языке, эти видео уроки помогут в выполнении заданий при изучении английского языка не прибегая к помощи преподавателя. Все эти уроки вы так же можете просмотреть у нас на платформе.</span></p>
+                    <p class="advantages_text_third"><span class='text_three'>Наш девиз: «Мы помогаем развиваться!»</span></p>
+                </div>
+            </div>
+        </div>
+        <div class='price' id="price">
+            <h1 style="text-align: center; padding-top: 2vh;">Наши цены</h1>
+            <div style="display: flex;">
+                <div class="price_coast"><p>Цена за 1 занятие: <strong>850p.</strong></p></div>
+                <div class="price_coast"><p>Цена за пакет от 10 занятий: <strong>800p.</strong></p></div>
+                <div class="price_coast"><p>Цена за пакет от 20 занятий: <strong>750p.</strong></p></div>
+                <div class="price_coast"><p>Цена за пакет от 30 занятий: <strong>700p.</strong></p></div>
+                <div class="price_coast"><p>Цена за пакет от 40 занятий: <strong>600p.</strong></p></div>
+            </div>
+            
+            <div style="padding-left: 2vh; margin-top: 3vh;">
+                <h6>- Занятия по длительности занимают 60 минут</h6>
+                <h6>- Пробное занятие: <strong>400p.(<i>40минут</i>)</strong></h6>
+                <h6>- Так же мы предоставляем скидки для тех семей в которых более одного ребенка занимаются на нашей платформе(<i>скидка 10%</i>) на каждого ребенка</h6>
+                <h6>- При оплате пакета из нескольких занятий, в случае невозможности заниматься с нами дальше мы возвращаем деньги за неизрасходованные занятия, из расчета пройденныйх занятий(<i>Например: вы приобрели пакет из 40 занятий(24000р.), но отзанимались 21 занятие, вам будет возвращено (24000 - 21 * 750) = 8250р.</i>)</h6>
+                <h6>- Так же я помогаю студентам в выполнении различных заданий. Цена зависит от объема работы.</h6>
+                <h6>- Помогаю компаниям и ИП в переводе или написании текстов. Цена зависит от объема работы.</h6>
+            </div>
+        </div>
+    </div>
+    {% verbatim %}
+    <div id="reviews" class="review">
+        <h2 :class='{dis_none:isActive,}' style="color: #729FCFFF; text-align: center; padding-top: 2vh;" >Отзывы учащихся</h2>        
+        <div class="mb-2 p-4 w-50" :class='{dis_none:isActive,}' v-for='review, item in reviews'>        
+            <div>             
+             <h5 class="form-control">{{ review.name }}</h5>
+            </div>
+            <div>
+              <label style="color: #F30939FF;" for="exampleFormControlTextarea1" class="form-label">Отзыв:</label>
+              <p class="form-control" id="exampleFormControlTextarea1" rows="3"> {{ review.text }} </p>
+              <i style="color: #5C3566FF; float: right;" > {{format_date(review.date)}}</i>
+            </div>
+        </div>
+        <div>
+        <div style="text-align:center;" :class="{dis_none: sendRewiew}">
+            <div class="spinner-grow" role="status"></div>
+            <p>Отправка...</p>
+        </div>       
+        <div style="margin: auto; margin-top: 10%;" :class='{dis_none: successMessageReview}' class='w-75'>
+            <div class="alert alert-success" role="alert">
+                <div style="position: absolute; right: 0; margin-right: 10px;" @click="successMessageClose" class="cl-btn-7"></div>
+                  <h4 class="alert-heading">Успешно!</h4>
+                  <p>Ваш отзыв успешно отправлен.</p>
+                  <hr>
+                  <p class="mb-0">Отзыв будет размещен после проверки администратором.</p>
+            </div>
+        </div>
+        <div style="margin: auto; margin-top: 10%;" :class='{dis_none: errorMessageReview}' class='w-75'>
+            <div class="alert alert-danger" role="alert">
+                <div style="position: absolute; right: 0; margin-right: 10px;" @click="successMessageClose" class="cl-btn-7"></div>
+                    <h4 class="alert-heading">Ошибка сервера!</h4>
+                    <p>Ваше сообщение не отправлено!</p>
+                    <hr>
+                    <p class="mb-0">Попробуйте отправить сообщение позже.</p>
+            </div>
+        </div> 
+        <form :class='{dis_none: isActive}' action="" class="mb-3 p-5 w-75">
+            <hr />
+            <h5 style="color: #F30939FF">Оставить отзыв</h5>      
+            <div class="mb-3">
+              <label style="background-color" for="exampleFormControlInput1" class="form-label">Ваше имя:</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Как вас зовут" :value='nameReview' @input='inputReviewName'>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Текст:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст" :value="textReview" @input='inputReviewText'></textarea>
+            </div> 
+            <button type="button" class="btn btn-primary" @click='addReview'>Отправить</button>  
+        </form>
+    {% endverbatim %}
+
+    <footer class="contact" id='contact'>
+        <div id='test' class="logo">            
+            <img class='img_logo' src="../../static/english_teacher/src/2021-04-16_12-44.png" alt="">
+        </div>
+        <div class="line_v">            
+        </div>
+
+        {% verbatim %}
+        <div  class="p-2 m-2" id="footer_vue">
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; border-top: 10px;" >
+                <div class="image_div">
+                    <button v-on:click="showReviews" >
+                        <p class="image_text">Отзывы</p>
+                        <img style="width: 150px;" class="images" src="../../static/english_teacher/src/Отзывы.jpg" alt="">
+                    </button>                
+                </div>
+                <div class="image_div">
+                    <button @click="showCall" >                
+                        <p class="image_text" >Позвонить</p>
+                        <img class="images" src="../../static/english_teacher/src/Звонок.jpeg" alt=""> 
+                    </button>
+                </div>
+                <div class="image_div" >
+                    <button @click="showMessage">         
+                        <p class="image_text" >Написать</p>                
+                        <img class="images" src="../../static/english_teacher/src/Написать.jpg" alt="">            
+                    </button>
+                </div>
+            </div>
+
+<!-- Модальное окно для Звонков  -->
+
+            <div :class='{dis_none: isActiveCall}'>                
+                <div style="display: block" class="modal show" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">+7(928)363-17-85</h5>
+
+                        <div @click="showCall" class="cl-btn-7"></div>
+
+                      </div>
+                      <div class="modal-body">
+                        <h6>Так же по всем вопросам вы можете написать WhatsApp</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button @click="showCall" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button @click="showCall" type="button" class="btn btn-primary">Understood</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+    <!-- Модальное окно для отправки email -->
+            <div :class='{dis_none: isActiveMessage}' >  
+                <div style="display: block;" class="modal show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div style="margin: auto; margin-top: 10%;" :class='{dis_none: successMessage}' class='w-75'>
+                      <div class="alert alert-success" role="alert">
+                        <div style="position: absolute; right: 0; margin-right: 10px;" @click="successMessageClose" class="cl-btn-7"></div>
+                          <h4 class="alert-heading">Успешно!</h4>
+                          <p>Ваше сообщение успешно отправлено.</p>
+                          <hr>
+                          <p class="mb-0">В ближайшее время вы получите ответ на указанный вами email.</p>
+                      </div>
+                  </div>
+                  <div style="margin: auto; margin-top: 10%;" :class='{dis_none: errorMessage}' class='w-75'>
+                      <div class="alert alert-danger" role="alert">
+                        <div style="position: absolute; right: 0; margin-right: 10px;" @click="successMessageClose" class="cl-btn-7"></div>
+                          <h4 class="alert-heading">Ошибка сервера!</h4>
+                          <p>Ваше сообщение не отправлено!</p>
+                          <hr>
+                          <p class="mb-0">Попробуйте отправить сообщение позже.</p>
+                      </div>
+                  </div> 
+                  <div :style="{display: sendMessageForm}" class="modal-dialog">
+                    <div style="margin: auto; margin-top: 10%;" class="modal-content w-75">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Опишите все ваши вопросы</h5>
+                        <div @click="showMessage" class="cl-btn-7"></div>
+                      </div>
+                      <div style="text-align:center;" :class="{dis_none: sendOneMessage}">
+                        <div class="spinner-grow" role="status"></div>
+                        <p>Отправка...</p>
+                      </div>  
+                      <div class="modal-body">
+                        <form method="POST">
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ваш email:</label>
+                            <input type="email" class="form-control" id="recipient-name" placeholder="Введите ваш адрес электронной почты" @input='inputEmailText'>
+                          </div>
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Сообщение:</label>
+                            <textarea style="height: 25vh;" placeholder="Введите ваше сообщение" class="form-control" id="message-text" @input='inputMessageText'></textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button @click="showMessage" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click='sendMessage'>Send message</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            {% endverbatim %}
+        </div>
+        <div class="logo_mini">
+            <img class="logo_mini_img" src="../../static/english_teacher/src/logo.png" alt="">
+            <p class="logo_mini_text">privatenglish</p>
+        </div>
+
+    </footer>
+
+
+    
+    <script src="{% static 'english_teacher/js/script.js' %}"></script>
+    <script src="{% static 'english_teacher/js/scriptvue.js' %}"></script>
+
+</body>
+</html>

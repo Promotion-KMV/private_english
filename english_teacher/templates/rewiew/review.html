@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1>hello</h1>
+{% verbatim %}
+<div id="reviews">
+    <p v-for='review in reviews'>
+        <p> {{ review.name }} </p>
+    </p>
+</div> 
+    <div class="mb-3 p-5">        
+        <h6>Number: </h6>
+        <div>
+          <label for="exampleFormControlInput1" class="form-label">Имя:</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div>
+          <label for="exampleFormControlTextarea1" class="form-label">Отзыв:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+    </div>
+
+    <form action="" class="mb-3 p-5">
+        <h5>Оставить отзыв</h5>      
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Ваше имя:</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Как вас зовут">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Текст:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст отзыва"></textarea>
+        </div>   
+    </form>
+
+{% endverbatim %}
+
+
+
+{% endblock  %}

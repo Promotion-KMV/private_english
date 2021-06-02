@@ -1,0 +1,77 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Главная {% endblock  %}</title>
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'english_teacher/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+
+
+    {% bootstrap_css %}
+</head>
+<body>
+    <nav class="navbar-dark bg-dark p-3 m-1 h3">
+        <input type="checkbox" name="menu" id="btn-menu" />
+        <label for="btn-menu">Меню</label> 
+
+        <ul id="nav" class="nav justify-content-center text-light bg-dark">
+          {% if user.is_active and request.user.is_customer or user.is_staff%}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'english_teacher:main_info' %}" tabindex="-1" aria-disabled="true">На главную</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'english_teacher:books' %}">Учебники</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'english_teacher:video' %}" tabindex="-1" aria-disabled="true">Видеоуроки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'english_teacher:homework' 165 %}">Домашние задания</a>
+          </li>
+          
+          <li class="nav-item">
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Самостоятельное изучение слов">
+              <a class="nav-link" href="{% url 'english_teacher:list_study_word' %}">Учим слова</a>
+            </span>
+          </li>
+          {% endif %}
+          {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Админка</a>
+          </li>
+          {% endif %}
+
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:register' %}" tabindex="-1" aria-disabled="true">Регистрация</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:login' %}" tabindex="-1" aria-disabled="true">Вход</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account:logout' %}" tabindex="-1" aria-disabled="true">Выход</a>
+          </li>
+          {% endif %}
+        </ul>
+    </nav>
+
+    <section>
+        {% block content %}
+            
+        {% endblock  %}
+    </section>
+
+    {% block script %}{% endblock script %}
+</body>
+</html>

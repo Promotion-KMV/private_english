@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3 style="padding-left: 10px;">{{ date }}</h3>
+</div>
+    {% if user.is_authenticated and user.is_staff == False and request.user.is_customer %}
+    <div style="text-align: center;">
+      <h4>{{ user.first_name }}</h4>
+        {% if homework.date_next_exercise.timestamp > date.timestamp %}
+            <p>Следующее занятие запланированно на {{ homework.date_next_exercise }}</p>
+        {% else %}
+            <p>Если вы не обговаривали дату следующего занятия свяжитесь с преподавателем</p>
+        {% endif %}
+        {% if url_user == '' %}
+            <p>Здесь будет отражаться ссылка на zoom коференцию</p>
+        {% else %}
+            <p>Перейдите по ссылке для начала урока: <a href="{{url_user.url}}">{{url_user.url}}</a></p>
+        {% endif %}
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 10px;">
+        <h3>Для доступа к платформе сообщите преподавателю о вашей регистрации сообщением Whatsapp по номеру +7(928)363-17-85</h3>
+        <h3>В сообщении укажите почту которая была зарегестрированна</h3>
+    </div>
+    {% endif %}
+{% endblock  %}

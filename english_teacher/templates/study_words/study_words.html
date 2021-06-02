@@ -1,0 +1,61 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div >{{dict_words|json_script:'study_words'}}
+        {% verbatim %}
+        <div id="study_app_words">
+            <h2 class='m-2' style="text-align: center;"> {{ messageFirst }} </h2>
+            <div :style="{display: activeDisplay}">           
+                <div style="text-align: center;" v-text="message"  class="alert" :class="[activeClass, dispStart]" role="alert">
+                </div>
+                <a style="text-align: center; text-decoration: none;" target="_blank" :href="'https://wooordhunt.ru/word/' + engWord"><h4 style="text-align: center;"> {{ engWord }} <img v-if='engWord' :class='[imgStart]' style="width: 2%;" src="../../static/english_teacher/src/sound.png" alt=""> </h4></a>
+                <div style="display:flex; padding-top: 40px; justify-content: center;">                    
+                    <div style="padding-left: 10px;" v-for="item in allVal" v-if="engWord">
+                        <input @click='inputClick' type="submit" :value="item">
+                    </div>
+                    <button style="width: 15%;" class="btn btn-success" :class="[btnStart]" @click='inputStart'> Начать </button>
+                    <div :class='[btnNext]'>
+                        <div style="text-align: center;" >
+                            <h6>Далее вам необходимо ввести в поле перевод отображаемого русского слова</h6>
+                            <button class='mt-5 btn btn-outline-danger' @click='secondStageGo'>Дальше</button>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div :style='{display: activeDisplaySecond}'>
+                <div style="text-align: center;" v-text="message"  class="alert" :class="[activeClass]" role="alert">
+                </div>
+                <h4 style="text-align: center; border-radius: 50%; "> {{ rusWord }} </h4>
+                <div style="display:flex; padding-top: 40px; justify-content: center;">
+                    <input 
+                        @keypress.enter='validNext' 
+                        :value = 'inputValue'
+                        @input = 'inputControl'
+                        class='w-50 form-control' type="text" placeholder="Ввдите перевод">
+                    <button @click="clickValid" class='ml-1 btn btn-outline-warning' >Проверить</button>
+                </div>
+            </div>
+            <div :style='{display: gif}'>
+                {% endverbatim %}
+                <div style="text-align: center; margin-top: 10%;">
+                    <img src="../../static/english_teacher/src/you are the best.gif" alt="">
+                </div>
+                <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:index' %}">В начало</a></button>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'english_teacher/js/study_words.js' %}"></script>
+</body>
+</html>

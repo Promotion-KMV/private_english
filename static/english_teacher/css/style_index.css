@@ -1,0 +1,437 @@
+.fader {
+    animation-name: fade;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.fade_start {
+    animation-name: fade_start;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+        padding: 18px;
+        font-size: 18px;
+    }
+
+    to {
+        opacity: 0.3;
+        padding: 15px;
+        font-size: 15px;
+    }
+    
+}
+
+@keyframes fade_start {
+    from {
+        opacity: 0.3;
+        padding: 15px;
+        font-size: 15px;
+
+    }
+
+    to {
+        opacity: 1;
+        padding: 18px;
+        font-size: 18px;
+    }
+    
+}
+
+.nav-link {
+    color: white;
+}
+.nav_me {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.rus {
+    display: block;
+}
+
+.english {
+    display: none;
+}
+
+#navbar {
+    position: fixed; 
+    width: 100%; 
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+.advantages {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.advantages_head {
+    text-align: center;
+    padding-top: 2vh;
+}
+
+.advantages_text {
+    margin-top: 20px;
+    font-size: 28px;
+    padding: 2vh;
+}
+
+.advantages_text_first {
+    min-height: 5vh;
+    text-align: center;
+    background-color: hsla(56, 89%, 48%, 1);
+    border-radius: 10px;
+
+}
+.text_one {
+    color: black;
+    font-weight: 700;
+}
+
+.text_two {
+    padding: 10px;
+    color: black;
+    font-weight: 700;
+    max-width: 500px;
+}
+
+.text_three {
+    color: black;
+    font-weight: 700;
+}
+
+.advantages_text_second {
+    margin-top: 3vh;
+    text-align: center;
+    background-color: hsla(56, 89%, 48%, 1);
+    border-radius: 10px;
+    align-items: flex-end;
+    max-width: 800px;
+
+}
+
+.advantages_text_third {
+    margin-top: 15vh;
+    text-align: center;
+    background-color: hsla(56, 89%, 48%, 1);
+    border-radius: 10px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    max-width: 800px;
+}
+
+.about_me {
+    background-image: url(../src/IMG-20210414-WA0004.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    height: max(100vh,600px);
+    background-position: 50%;
+    background-size: cover;
+}
+
+
+.lesson {
+    background-image: url(../src/child_1.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    height: max(100vh,600px);
+    background-position: 50%;
+    background-size: cover;
+}
+
+.advantages {
+    background-image: url(../src/child_2.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    height: max(100vh,600px);
+    background-position: 50%;
+    background-size: cover;
+
+}
+
+.price {
+    background-image: url(../src/price_fone.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    height: max(50vh,600px);
+    background-position: 50%;
+    background-size: cover;
+}
+
+.price_coast {
+    width: 19vw;
+    height: 15vh;
+    font-size: 25px;
+    background-color: #5EDE5FFF;
+    border-radius: 10px;
+    margin-top: 5vh;
+    margin-left: 1vw;
+    padding: 1vw;
+}
+.line_v {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    border-top: 1px solid #9EC1D4;
+    padding: 10px;
+}
+
+.img_logo {
+    max-width: 20%;
+
+}
+
+.images {
+    max-width: 150px;
+    height: 100px;
+    border-radius: 25px;
+}
+
+footer  {
+    background-image: url(../src/footer_3.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    background-position: 50%;
+    background-size: cover;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    padding-top: 15px; 
+}
+
+.image_text {
+    text-align: center;
+    color: #BABDB6FF;
+}
+
+.image_div {
+    border: 1px solid #9EC1D4;
+    border-radius: 5%;
+}
+
+.logo_mini {
+    display: flex;
+    margin-top: 50px;
+    justify-content: flex-end;
+    margin-right:  60px;
+}
+
+.logo_mini_img {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.logo_mini_text {
+    margin-top: 8px; 
+    margin-left: 8px;
+    color: #C2F4FAFF;
+}
+
+.about_me {
+    color: #FFFFFFFF;
+    opacity: 1;
+}
+
+.about_me_text {
+    padding-top: 100px;
+    padding-left: 30px;
+    color: #8F5902FF;
+    text-align: center;
+}
+
+.dis_none {
+    display: none;
+}
+
+.dis_none {
+    background-repeat: repeat;
+    width: auto;
+    background-position: 70%;
+    background-size: cover;
+}
+
+.review {
+    background-image: url(../src/отзывы.jpg);
+}
+
+
+/* кнопка закрытия */
+
+.cl-btn-7 {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    position: relative;
+    z-index: 1;
+    /* margin: 20px auto; */
+    cursor: pointer;
+}
+.cl-btn-7:before {
+    content: '+';
+    color: #337AB7;
+    position: absolute;
+    z-index: 2;
+    transform: rotate(45deg);
+    font-size: 50px;
+    line-height: 1;
+    top: -5px;
+    left: 6px;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+}
+.cl-btn-7:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: #337AB7;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+    transform: scale(0.01);
+}
+.cl-btn-7:hover:after {
+    transform: scale(1);
+}
+.cl-btn-7:hover:before {
+    transform: scale(0.8) rotate(45deg);
+    color: #fff;
+}
+
+@media screen and (max-width: 1050px){
+    .nav_me {
+        padding: 10px;
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .nav_me {
+        padding: 5px;
+        font-size: 80%;
+    }
+    #about_me_nav {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #about_me_nav, #my_advantage_nav, #contact_for_me_nav,
+    #lesson_nav {
+        display: none;
+    }
+    .nav_me {
+        justify-content: center;
+    }
+    #navbar {
+        position: relative;
+    }
+    .about_me_text {
+        padding-top: 20px;
+    }
+    .lesson {
+        background-image: url(../src/lesson_media.jpg);
+    }
+    .advantages_text_third {
+        margin-top: 5vh;
+    }
+}
+
+.education {
+    /* display: none; */
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 10px;
+    width: 35vw;
+    opacity: 1;
+    background-color: hsla(0, 0%, 50%, 0.3);
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+}
+
+.education_text {
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFFFF;
+}
+
+.experience {
+    width: 35vw;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    background-color: hsla(0, 0%, 50%, 0.3);
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+}
+
+.experience_text {
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFFFF;
+}
+
+.why_teach {
+    width: 35vw;
+    margin-top: 5%;
+    text-align: center;
+    background-color: hsla(0, 0%, 50%, 0.3);
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    margin-left: 60vw;
+}
+
+.why_teach_text {
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFFFF;
+}
+
+
+@media screen and (max-width: 900px){
+    .education, .experience, .why_teach{
+        width: 50vw;
+    }
+    .why_teach {
+        margin-left: 50vw;
+    }
+    .advantages_text_third {
+        margin-top: 10vh;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .education, .experience, .why_teach {
+        width: 80vw;
+    }
+    .why_teach, .experience {
+        margin-left: 2vw;
+    }
+    .advantages_text {
+        font-size: 20px;
+    }
+    .advantages_text_third, .advantages_text_second {
+        margin-top: 1vh;
+    }
+}
+}

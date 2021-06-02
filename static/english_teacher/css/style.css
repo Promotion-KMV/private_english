@@ -1,0 +1,44 @@
+nav label {    
+    display: none;
+    border: 1px solid #fff;   
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+nav label:hover{
+    color: #f00;
+    border: 1px solid #f00;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .nav-link {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+    nav label{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        align-items: center;
+        width: 30%;
+
+        color: white;
+    }
+    #nav {
+        display: none;
+    }
+    input[type="checkbox"]:checked ~ label + #nav {
+        display: flex;
+    }
+    .nav-link {
+        font-size: 60%;
+    }    
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load bootstrap5 %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style='display:flex; flex-direction: column;'>
+    <h3 style="text-algin: center; margin: auto;">Введите слова для изучения</h3>
+
+    <form id="register-form" name="register-form" style="text-algin: center; margin: auto; padding-top: 20px;" method="post">
+        {% csrf_token %}
+        <div style="text-algin: center;">
+            <div style='display:flex; justify-content: center;' >
+                {{ formset_name.as_p }}
+            </div>
+            <div>
+                <div style="padding-top: 5px; width: 1000px;">
+                   {{ formset }}
+                </div>
+            </div>
+        </div>
+        <p style="display: flex; justify-content: center;" >Мы не рекомендуем изучать больше 10 слов за день. Но вы всегда можете создать новый словарь. <br> Так же есть минимальй порог изучения, он составляет 5 слов.</p>
+        <div style="display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-primary">Начинаем учить !</button>
+        </div>
+    </form>
+</div>
+
+{{last_words_name}}
+{% endblock %}

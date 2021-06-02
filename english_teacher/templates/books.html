@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+    {% for book in books %}
+    <div style="display:flex; flex-direction: column; padding-left: 50px;">
+        <h3>{{ forloop.counter }}. <a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3>    
+    </div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne{{book.id}}">
+          <h2 class="mb-0">
+            <button data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
+              <p>Аудио к {{book.name}}</p>
+            </button>
+          </h2>
+        </div>
+        {% for i in audio %}
+            {% if i.name_book_id == book.id %}        
+        <div id="collapseOne{{book.id}}" class="collapse" aria-labelledby="headingOne{{book.id}}" data-parent="#accordion">
+          <div style="display:flex" class="card-body">
+            <p style="margin-top: 10px;">{{ i.name }} - </p>
+            <audio preload="none" controls="controls">
+                <source src="{{ i.audio.url }}" type="audio/mpeg" />
+            </audio>   
+          </div>
+        </div>
+      </div>
+    </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+{% block script %}
+    <script src="{% static 'english_teacher/js/books_audio.js' %}"></script>
+{% endblock script %}

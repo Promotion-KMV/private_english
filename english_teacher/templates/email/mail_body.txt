@@ -1,0 +1,1 @@
+{{ link }} {{ expiry }}( datetime) и user( Model) передаются во время рендеринга
