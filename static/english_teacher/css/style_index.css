@@ -169,13 +169,22 @@
 
 .price_coast {
     width: 19vw;
-    height: 15vh;
+    height: 16vh;
     font-size: 25px;
     background-color: #5EDE5FFF;
     border-radius: 10px;
     margin-top: 5vh;
     margin-left: 1vw;
     padding: 1vw;
+}
+.video {
+    padding-top: 55vh;
+    padding-left: 5vw;"
+}
+
+.video_promotion {
+    width: 40vw;
+    height: 35vh;
 }
 .line_v {
     margin-left: auto;
@@ -349,6 +358,21 @@ footer  {
     .advantages_text_third {
         margin-top: 5vh;
     }
+    .video_promotion {
+        width: 80vw;
+        height: 60vh;
+    }
+    .video {
+        padding-top: 25vh;
+        padding-left: 0;
+        text-align: center;
+   }
+   .price_coast {
+        font-size: 20px;
+   }
+   .price {
+    height: max(70vh,600px);
+   }
 }
 
 .education {
@@ -433,5 +457,15 @@ footer  {
     .advantages_text_third, .advantages_text_second {
         margin-top: 1vh;
     }
+    .video_promotion {
+        height: 40vh;
+    }
+    .price_coast {
+        font-size: 16px;
+        margin-top: 1vh;
+   }
+    .price {
+    height: max(90vh,600px);
+   }
 }
 }

@@ -36,7 +36,7 @@ class CustomUser(AbstractUser):
     is_pupil = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
     is_message = models.BooleanField(default=False)
-    count_cost_lessons = models.IntegerField()
+    count_cost_lessons = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
