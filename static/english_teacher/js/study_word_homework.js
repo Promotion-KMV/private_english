@@ -1,8 +1,10 @@
 let jsVariable = JSON.parse(document.getElementById('homework-words').textContent);
 
+
 const App = {
     data() {
         return {
+
             jsVariable,
             dobleJsVariable: {},
             jsVariableValue: {},

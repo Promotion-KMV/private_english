@@ -6,6 +6,7 @@ from english_teacher.serializers import ReviewSerializer
 from django.utils.encoding import *
 from django.core.mail import EmailMessage
 from django.forms import formset_factory
+from django.contrib.sites.shortcuts import get_current_site
 
 from .models import *
 from .forms import *
@@ -31,9 +32,14 @@ def video(request):
 
 
 def index(request):
+    domain = get_current_site(request).domain
+    context = {
+        'domain': domain
+    }
     if request.user.is_authenticated:
         return render(request, 'main_info.html',) 
-    return render(request, 'index.html')
+
+    return render(request, 'index.html', context)
 
 
 def main_info(request):
@@ -56,6 +62,7 @@ def main_info(request):
 
 def homework(request, user_id):
     homework = HomeWork.objects.filter(custom_user=request.user)[:5]
+    
     context = {
         'homework': homework,
     }
@@ -93,6 +100,7 @@ def homework_study_words(request, word_study):
     context = {
         'studywords': studywords,
         'dict_words': dict_words,
+
     }
     return render(request, 'homework/homework_study_words.html', context)
 

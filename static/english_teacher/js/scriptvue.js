@@ -1,8 +1,9 @@
-
+let jsDomain = JSON.parse(document.getElementById('domain-test').textContent);
 const App = {
     
     data() {
         return {
+            jsDomain,
             nameReview: '',
             textReview: '',
             emailText: '',
@@ -23,6 +24,9 @@ const App = {
         }
     },
     methods: {
+        domainTest() {
+            console.log(jsDomain)
+        },
         format_date(value){
             return moment(String(value)).format('MMMM Do YYYY, h:mm a')
         },
@@ -107,9 +111,10 @@ const App = {
 
             }).finally(() => {
                 this.sendRewiew = true
-                console.log('finally')
+                console.log(jsDomain)
                 this.nameReview = ''
                 this.textReview = ''
+
             });            
             created: {
                 this.getReviews();

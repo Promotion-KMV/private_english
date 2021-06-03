@@ -173,23 +173,11 @@ DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL')
 
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
+
 # STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+   os.path.join(BASE_DIR, 'static'),
 ]
-=======
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-<<<<<<< HEAD
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'static'),
-#]
-=======
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
->>>>>>> c0b55f5de9f52f0fb215ffa32679de8ae9409749
->>>>>>> a4f34d61a792f79edd19ef47ee24d4f0379c03bb
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 

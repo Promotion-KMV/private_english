@@ -1,7 +1,6 @@
 let jsVariable = JSON.parse(document.getElementById('study_words').textContent);
-
 const App = {
-        data() {
+    data() {
         return {
             jsVariable,
             dobleJsVariable: {},
