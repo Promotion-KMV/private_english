@@ -51,7 +51,7 @@ const App = {
         },
         getReviews() {
             const vm = this;
-            axios.get(`https://${jsDomain}/api/review`)
+            axios.get(`http://${jsDomain}/api/review`)
             .then(function(response){
                 vm.reviews = response.data
             });
@@ -89,7 +89,7 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`https://${jsDomain}/send_message/review/${this.nameReview}/${this.textReview}`, {
+            fetch(`http://${jsDomain}/send_message/review/${this.nameReview}/${this.textReview}`, {
                 method: "POST",
                 headers: { 
                     "X-CSRFToken": csrftoken,
@@ -133,7 +133,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                fetch(`https://${jsDomain}/send_message/message/${this.emailText}/${this.messageText}`, {
+                fetch(`http://${jsDomain}/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
