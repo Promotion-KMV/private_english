@@ -11,7 +11,7 @@ class StudyWordsInline(admin.TabularInline):
 
 class AudioBookInline(admin.TabularInline):
     model = StudyAudioBook
-    fields = ('video', 'name')
+    fields = ('audio', 'name')
 
 
 @admin.register(HomeWork)

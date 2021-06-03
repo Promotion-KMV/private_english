@@ -256,7 +256,6 @@ footer  {
 
 .about_me_text {
     padding-top: 100px;
-    padding-left: 30px;
     color: #8F5902FF;
     text-align: center;
 }
@@ -468,4 +467,4 @@ footer  {
     height: max(90vh,600px);
    }
 }
-}
+
