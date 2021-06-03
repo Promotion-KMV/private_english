@@ -51,7 +51,7 @@ const App = {
         },
         getReviews() {
             const vm = this;
-            axios.get(`http://${jsDomain}/api/review`)
+            axios.get(`https://privatenglishtutor.ru/api/review`)
             .then(function(response){
                 vm.reviews = response.data
             });
@@ -89,7 +89,7 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`http://${jsDomain}/send_message/review/${this.nameReview}/${this.textReview}`, {
+            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
                 method: "POST",
                 headers: { 
                     "X-CSRFToken": csrftoken,
@@ -133,7 +133,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                fetch(`http://${jsDomain}/send_message/message/${this.emailText}/${this.messageText}`, {
+                fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
