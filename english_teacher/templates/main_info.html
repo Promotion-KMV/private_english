@@ -18,6 +18,8 @@
             <p>Перейдите по ссылке для начала урока: <a href="{{url_user.url}}">{{url_user.url}}</a></p>
         {% endif %}
     </div>
+    {% elif user.is_superuser or user.is_staff %}
+        <h3>Доделать отображение всех занятий</h3>
     {% else %}
     <div style="text-align: center; padding: 10px;">
         <h3>Для доступа к платформе сообщите преподавателю о вашей регистрации сообщением Whatsapp по номеру +7(928)363-17-85</h3>
