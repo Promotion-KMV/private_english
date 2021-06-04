@@ -37,7 +37,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('english_teacher:main_info')
 SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

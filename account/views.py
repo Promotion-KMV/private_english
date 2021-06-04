@@ -57,7 +57,7 @@ def register(request):
             link = reverse('account:activate', kwargs={
                                     'uidb64': uidb64,
                                     'token': token_generator.make_token(user)})
-            activate_url = 'http://'+domain+link
+            activate_url = 'https://privatenglishtutor.ru/'+link
             data = {
                 'activate_url': activate_url,
             }
