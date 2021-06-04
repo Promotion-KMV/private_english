@@ -12,7 +12,6 @@ from .models import *
 from .forms import *
 import datetime
 
-
 def book(request):
     books = StudyBooks.objects.all()
     audio = StudyAudioBook.objects.all()
@@ -52,10 +51,13 @@ def main_info(request):
     else:
         if date.timestamp() - url.date_url_create.timestamp() < 1800:
             url_user = ModelUrlText.objects.filter(name_user=request.user).last()
+
+    all_ecxercise = homework = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
     context = {
         'url_user': url_user,
         'homework': homework,
         'date': date,
+        'all_ecxercise': all_ecxercise
     }
     return render(request, 'main_info.html', context)
 

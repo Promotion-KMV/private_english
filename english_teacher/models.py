@@ -44,7 +44,7 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.email + ' ' + self.first_name
+        return self.email + ' ' + self.first_name + ' ' + self.last_name
 
 
 class ReviewsTeacher(models.Model):
@@ -67,10 +67,6 @@ class VideoMaterial(models.Model):
     name = models.CharField(max_length=100,)
     video = models.FileField(upload_to='media/')
     # name_homework = models.ForeignKey('HomeWork', on_delete=models.CASCADE, null=True, blank=True)
-
-
-    # def get_absolute_url(self):
-    #     return reverse(f'media/{self.video}')
 
     def __str__(self):
         return self.name
@@ -128,7 +124,7 @@ class StudyAudioBook(models.Model):
 
 
 class StudyWords(models.Model):
-    """Модель отзывов"""
+    """Модель изучения слов"""
     home_work = models.ForeignKey(HomeWork, on_delete=models.CASCADE,
                                   null=True, blank=True, related_name='word_homework') 
     user_name = models.SmallIntegerField(default=0)

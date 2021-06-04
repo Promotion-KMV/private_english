@@ -19,7 +19,12 @@
         {% endif %}
     </div>
     {% elif user.is_superuser or user.is_staff %}
-        <h3>Доделать отображение всех занятий</h3>
+    <div style='margin-left: 10px;'>
+        <h3>Запланированные занятия</h3>
+        {% for ecxercise in all_ecxercise %}
+            <p>{{ ecxercise.custom_user }} - {{ ecxercise.date_next_exercise }}</p>
+        {% endfor %}
+    </div>
     {% else %}
     <div style="text-align: center; padding: 10px;">
         <h3>Для доступа к платформе сообщите преподавателю о вашей регистрации сообщением Whatsapp по номеру +7(928)363-17-85</h3>

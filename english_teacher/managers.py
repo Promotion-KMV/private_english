@@ -4,12 +4,12 @@ from django.utils.translation import ugettext_lazy as _
 
 class CustomUserManager(BaseUserManager):
     """
-    Custom user model manager where email is the unique identifiers
-    for authentication instead of usernames.
+    Сохранение пользовательских моделей, в котором электронная почта является уникальным идентификатором
+    для аутентификации вместо имен пользователей.
     """
     def create_user(self, email, password, **extra_fields):
         """
-        Create and save a User with the given email and password.
+        Создаем и сохраняем суперюзера по email и паролю.
         """
         if not email:
             raise ValueError(_('The Email must be set'))
@@ -22,7 +22,7 @@ class CustomUserManager(BaseUserManager):
 
     def create_superuser(self, email, password, **extra_fields):
         """
-        Create and save a SuperUser with the given email and password.
+        Создаем и сохраняем суперюзера по email и паролю.
         """
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
