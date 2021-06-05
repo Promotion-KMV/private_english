@@ -46,9 +46,15 @@ class VideoAdmin(admin.ModelAdmin):
     list_display = ('name', 'video')
 
 
-@admin.register(SelfStudyWords)
-class SelfStudyWordsAdmin(admin.ModelAdmin):
-    list_display = ('english_word', 'rus_word')
+class SelfStudyWordsInline(admin.TabularInline):
+    model = SelfStudyWords
+    fields = ('english_word', 'rus_word')
+
+@admin.register(SelfStudyWordName)
+class SelfWordsStudyNameAdmin(admin.ModelAdmin):
+    inlines = [SelfStudyWordsInline]
+    list_display = ('user_name', 'name', 'date_study')
+
 
 
 @admin.register(ModelUrlText)

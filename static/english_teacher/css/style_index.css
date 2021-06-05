@@ -445,10 +445,10 @@ footer  {
 
 @media screen and (max-width: 600px){
     .education, .experience, .why_teach {
-        width: 80vw;
-    }
-    .why_teach, .experience {
-        margin-left: 2vw;
+        min-width: 90vw;
+        margin-left: 4vw;
+        margin-right: 2vw;
+        
     }
     .advantages_text {
         font-size: 20px;

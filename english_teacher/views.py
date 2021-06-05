@@ -12,7 +12,10 @@ from .models import *
 from .forms import *
 import datetime
 
+
 def book(request):
+    """Страница отображения всех учебников с фудиофайлами,
+        Логика 'отношений' rкниги к аудио реализована в шаблоне"""
     books = StudyBooks.objects.all()
     audio = StudyAudioBook.objects.all()
     context = {
@@ -23,6 +26,7 @@ def book(request):
 
 
 def video(request):
+    """Страница отражения всех видеолекций"""
     all_video = VideoMaterial.objects.all()
     context = {
         'all_video': all_video,
@@ -31,17 +35,15 @@ def video(request):
 
 
 def index(request):
-    domain = get_current_site(request).domain
-    context = {
-        'domain': domain
-    }
+    """Главная страница"""
     if request.user.is_authenticated:
         return render(request, 'main_info.html',) 
 
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 
 def main_info(request):
+    '''Главная страница зарегестрированного пользователя'''
     homework = HomeWork.objects.filter(custom_user=request.user).last()
     date = datetime.datetime.now()
     url_user = ''
@@ -63,6 +65,7 @@ def main_info(request):
 
 
 def homework(request, user_id):
+    '''Выбор домашнего задания ученика'''
     homework = HomeWork.objects.filter(custom_user=request.user)[:5]
     
     context = {
@@ -72,15 +75,14 @@ def homework(request, user_id):
 
 
 def studyhomework(request, work_id):
+    '''Домашнее задание'''
     homework = get_object_or_404(HomeWork, id=work_id)
-    # homework = HomeWork.objects.get(id=work_id)
     studywords = StudyWords.objects.filter(home_work=work_id)
     studybook = get_object_or_404(StudyBooks, name=homework.book)
     studyaudio = StudyAudioBook.objects.all()
     book_url = studybook.book.url
     audio = StudyAudioBook.objects.all()
     video = VideoMaterial.objects.all()
-    # audio_url = studyaudio.audio.url
     context = {
         'homework': homework,
         'studywords': studywords,
@@ -95,6 +97,7 @@ def studyhomework(request, work_id):
 
 
 def homework_study_words(request, word_study):
+    '''Изучение слов заданных преподавателем'''
     studywords = StudyWords.objects.filter(home_work=word_study)
     dict_words = {}
     for word in studywords:
@@ -121,7 +124,9 @@ def send_message(request, sub, email, message):
     )
     email.send()
 
+
 def self_study_word(request):
+    ''' Добавление слов для самостоятельного изучения'''
     user_name = request.user.id
     StudyWords = formset_factory(StydyWordForm, extra=10)
     SelfStudyWordNameView = formset_factory(StydyWordNameForm, extra=1)
@@ -155,6 +160,7 @@ def self_study_word(request):
 
 
 def list_study_word(request):
+    '''Выбор словаря для повторного изучения'''
     search_query_start = request.GET.get('search_date_start', '')
     search_query_end = request.GET.get('search_date_end', '')
     if search_query_start and search_query_end:
@@ -176,6 +182,7 @@ def list_study_word(request):
 
 
 def self_study_words(request, word_study):
+    '''Непосредственно изучение слов организуется через vue'''
     study_word_name = get_object_or_404(SelfStudyWordName, id=word_study)
     study_words = study_word_name.study_word_name.all()
     dict_words = {}
@@ -187,8 +194,7 @@ def self_study_words(request, word_study):
     return render(request, 'study_words/study_words.html', context)
 
 
-# class ListStudyWords():
-#     pass
+'''Блок DRF'''
 
 
 class ReviewsList(generics.ListAPIView):
@@ -208,8 +214,3 @@ class ReviewsDetail(generics.RetrieveAPIView):
 class ReviewsPost(generics.ListCreateAPIView):
     queryset = ReviewsTeacher.objects.all()
     serializer_class = ReviewSerializer
-
-
-
-
-#дообавить простмотр видео уроков в домашних заданиях

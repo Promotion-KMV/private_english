@@ -18,6 +18,7 @@
     <br>
   </div>
   {% for list in list_words_name  %}
+    <div style="padding-left: 2vw;">
       <p><i>Ранее изученные вами слова</i> : <strong>{{list.name}} от {{ list.date_study }}</strong><a href="{% url 'english_teacher:study_words' list.id %}">(Повторить слова)</a></p>
       <h6>Слова которые вы изучали:</h6>
       <div style='display: flex;' id="{{list.id}}">
@@ -25,6 +26,7 @@
             <p>{{i.english_word}} -- {{i.rus_word}}, &nbsp;</p>
         {% endfor %}
       </div>
+    </div>  
     <hr>
   {% endfor %}
   <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:self_study_words' %}">Создать новый словарь</a></button>

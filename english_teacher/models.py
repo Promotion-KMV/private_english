@@ -145,6 +145,10 @@ class SelfStudyWordName(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Самостоятельное изучение'
+        verbose_name_plural = 'Самостоятельное изучение'
+
 
 class SelfStudyWords(models.Model):
     """Модель самостоятельного изучения слов"""
