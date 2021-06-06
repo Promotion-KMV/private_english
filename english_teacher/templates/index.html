@@ -93,9 +93,9 @@
     </div>
     {{domain|json_script:'domain-test'}}
     {% verbatim %}
-    <div id="reviews" class="review">
+    <div id="reviews" class="review" v-cloak>
         <h2 :class='{dis_none:isActive,}' style="color: #729FCFFF; text-align: center; padding-top: 2vh;" >Отзывы учащихся</h2>        
-        <div class="mb-2 p-4 w-50" :class='{dis_none:isActive,}' v-for='review, item in reviews'>        
+        <div class="mb-2 p-4 rewiew_list" :class='{dis_none:isActive,}' v-for='review, item in reviews'>        
             <div>             
              <h5 class="form-control">{{ review.name }}</h5>
             </div>
@@ -110,7 +110,7 @@
             <div class="spinner-grow" role="status"></div>
             <p>Отправка...</p>
         </div>       
-        <div style="margin: auto; margin-top: 10%;" :class='{dis_none: successMessageReview}' class='w-75'>
+        <div v-cloak style="margin: auto; margin-top: 10%;" :class='{dis_none: successMessageReview}' class='w-75'>
             <div class="alert alert-success" role="alert">
                 <div style="position: absolute; right: 0; margin-right: 10px;" @click="successMessageClose" class="cl-btn-7"></div>
                   <h4 class="alert-heading">Успешно!</h4>
@@ -128,19 +128,21 @@
                     <p class="mb-0">Попробуйте отправить сообщение позже.</p>
             </div>
         </div> 
-        <form :class='{dis_none: isActive}' action="" class="mb-3 p-5 w-75">
-            <hr />
-            <h5 style="color: #F30939FF">Оставить отзыв</h5>      
-            <div class="mb-3">
-              <label style="background-color" for="exampleFormControlInput1" class="form-label">Ваше имя:</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Как вас зовут" :value='nameReview' @input='inputReviewName'>
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Текст:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст" :value="textReview" @input='inputReviewText'></textarea>
-            </div> 
-            <button type="button" class="btn btn-primary" @click='addReview'>Отправить</button>  
-        </form>
+        <div :class='{dis_none: isActive}' action="" class="mb-3 p-5">
+            <form>
+                <hr />
+                <h5 style="color: #F30939FF">Оставить отзыв</h5>      
+                <div class="mb-3">
+                  <label style="background-color" for="exampleFormControlInput1" class="form-label">Ваше имя:</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Как вас зовут" :value='nameReview' @input='inputReviewName'>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Текст:</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст" :value="textReview" @input='inputReviewText'></textarea>
+                </div> 
+                <button type="button" class="btn btn-primary" @click='addReview'>Отправить</button>  
+            </form>
+        </div>
     {% endverbatim %}
 
     <footer class="contact" id='contact'>
