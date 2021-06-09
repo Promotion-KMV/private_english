@@ -13,10 +13,10 @@
       <div class="card">
         <div class="card-header" id="headingOne{{book.id}}">
           <h2 class="mb-0">
-            <button style="text-decoration: none;" data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
+            <button data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
               {% for audio_book in audio %}
                 {% if audio_book.name_book_id == book.id %}
-                <p style="font-size: 2.6vh; color: red;">Аудио к учебнику "{{book.name}}"</p>
+                <p>Аудио к учебнику "{{book.name}}"</p>
             </button>
           </h2>
         </div>
@@ -37,7 +37,6 @@
     </div>
     {% endfor %}
 {% endblock %}
-    {{ audio|length }}
 {% block script %}
     <script src="{% static 'english_teacher/js/books_audio.js' %}"></script>
 {% endblock script %}

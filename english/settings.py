@@ -37,7 +37,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('english_teacher:main_info')
 SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = BASE_DIR.joinpath('sent_emails')
@@ -176,10 +176,10 @@ DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL')
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static'),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATICFILES_DIRS = [
+#   os.path.join(BASE_DIR, 'static'),
+#]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
