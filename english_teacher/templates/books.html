@@ -13,27 +13,31 @@
       <div class="card">
         <div class="card-header" id="headingOne{{book.id}}">
           <h2 class="mb-0">
-            <button data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
-              <p>Аудио к {{book.name}}</p>
+            <button style="text-decoration: none;" data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
+              {% for audio_book in audio %}
+                {% if audio_book.name_book_id == book.id %}
+                <p style="font-size: 2.6vh; color: red;">Аудио к учебнику "{{book.name}}"</p>
             </button>
           </h2>
         </div>
-        {% for i in audio %}
-            {% if i.name_book_id == book.id %}        
         <div id="collapseOne{{book.id}}" class="collapse" aria-labelledby="headingOne{{book.id}}" data-parent="#accordion">
           <div style="display:flex" class="card-body">
-            <p style="margin-top: 10px;">{{ i.name }} - </p>
+            <p style="margin-top: 10px;">{{ audio_book.name }} - </p>
             <audio preload="none" controls="controls">
-                <source src="{{ i.audio.url }}" type="audio/mpeg" />
+                <source src="{{ audio_book.audio.url }}" type="audio/mpeg" />
+                {% endif %}
+              {% endfor %}
+                {% if audio_book.name_book_id != book.id %}
+                  <p style="all: initial; font-size: 2.6vh; color: black;">Аудио к учебнику "{{book.name}}" нет</p>
+                {% endif %}
             </audio>   
           </div>
         </div>
       </div>
     </div>
-            {% endif %}
-        {% endfor %}
     {% endfor %}
 {% endblock %}
+    {{ audio|length }}
 {% block script %}
     <script src="{% static 'english_teacher/js/books_audio.js' %}"></script>
 {% endblock script %}
