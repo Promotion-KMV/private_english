@@ -16,7 +16,7 @@
             <button data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
               {% for audio_book in audio %}
                 {% if audio_book.name_book_id == book.id %}
-                <p>Аудио к учебнику "{{book.name}}"</p>
+                <p><span style="color: red; font-size: 2.6vh;">Аудио к учебнику "{{book.name}}"</span></p>
             </button>
           </h2>
         </div>
