@@ -13,16 +13,24 @@ from .forms import *
 import datetime
 
 
-def book(request):
-    """Страница отображения всех учебников с фудиофайлами,
-        Логика 'отношений' rкниги к аудио реализована в шаблоне"""
+def books(request):
+    """Страница отображения всех учебников"""
     books = StudyBooks.objects.all()
-    audio = StudyAudioBook.objects.all()
     context = {
         'books': books,
-        'audio': audio
     }
-    return render(request, 'books.html', context)
+    return render(request, 'books_all.html', context)
+
+
+def book(request, book_id):
+    """Страница отображения учебника с аудио()если есть"""
+    book = get_object_or_404(StudyBooks, id=book_id)
+    all_audio = StudyAudioBook.objects.filter(name_book=book_id)
+    context = {
+        'all_audio': all_audio,
+        'book': book,
+    }
+    return render(request, 'book.html', context)
 
 
 def video(request):
