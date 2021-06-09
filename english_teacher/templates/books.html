@@ -23,7 +23,7 @@
         <div id="collapseOne{{book.id}}" class="collapse" aria-labelledby="headingOne{{book.id}}" data-parent="#accordion">
           <div style="display:flex" class="card-body">
             <p style="margin-top: 10px;">{{ audio_book.name }} - </p>
-            <audio preload="none" controls="controls">
+            <audio controls="controls">
                 <source src="{{ audio_book.audio.url }}" type="audio/mpeg" />
                 {% endif %}
               {% endfor %}
