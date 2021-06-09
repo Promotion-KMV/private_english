@@ -36,12 +36,15 @@
       </div>
     </div>
     {% endfor %}-->
-<h3><a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3> 
+<h3 class="p-3"><a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3> 
 {% if all_audio %}
 {% for audio in all_audio %}
+<div style="display: inline-block;" class="p-3">
+  <p>{{audio.name}}</p>
   <audio preload="none" controls="controls">
-      <source src="{{ audio.audio.url }}" type="audio/mpeg" />
+     <source src="{{ audio.audio.url }}" type="audio/mpeg" />
   </audio>
+</div>
 {% endfor %}
 {% else %}
     <p>К этому учебнику нет аудио</p>
