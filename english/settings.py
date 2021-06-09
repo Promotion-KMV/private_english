@@ -59,7 +59,11 @@ INSTALLED_APPS = [
     'account',
     'bootstrap5',
     'crispy_forms',
+<<<<<<< HEAD
     'udemy_course_base',
+=======
+    'udemy_course_base'
+>>>>>>> 42f72a349a0c828613eba8c068acc97362604cf9
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
