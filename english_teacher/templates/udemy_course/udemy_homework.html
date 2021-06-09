@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{homework.name}}</p>
+    <p>{{homework.text}}</p>
+    {% for studyword in studywords %}
+        <p>{{studyword.english_word}} - {{studyword.rus_word}}</p>
+    {% endfor %}
+</body>
+</html>

@@ -39,8 +39,6 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = BASE_DIR.joinpath('sent_emails')
 
@@ -61,6 +59,7 @@ INSTALLED_APPS = [
     'account',
     'bootstrap5',
     'crispy_forms',
+    'udemy_course_base'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
