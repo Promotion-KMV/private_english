@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;" class='p-3'>
+    <h3>{{ video.name }}</h3>
+    <video style="width: 70vw; height: 70vh;" controls="controls" poster="video/duel.jpg">
+        <source src="{{ video.video.url }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    </video>
+</div>
+
+{% endblock %}
+

@@ -3,13 +3,12 @@
 {% block content %}
 
     {% for video in all_video %}
-        <h3 style="padding: 30px;">{{ forloop.counter }}. 
-            <a style="text-decoration: none;" target="_blank" href="{{ video.video.url }}">{{ video.name }}</a></h3>
-        <video width="400" height="300" controls="controls" poster="video/duel.jpg">
-            <source src="{{ video.video.url }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        </video>
+    <div style="text-align: center;">
+        <h3>{{ forloop.counter }}. 
+            <a style="text-decoration: none;" target="_blank" href="{% url 'english_teacher:video' video.id %}">{{ video.name }}</a>
+        </h3>
+    </div>
     {% endfor %}
-
 
 {% endblock %}
 

@@ -9,7 +9,7 @@
 <div class="list-group">
   <h3><a href="#" class="list-group-item list-group-item-action">Список всех учебников:</a></h3>
   {% for book in books %}
-  <h6><a href="{% url 'english_teacher:book' book.id %}" class="list-group-item list-group-item-action list-group-item-primary">{{ book.name }}</a></h6>
+  <h6><a href="{% url 'english_teacher:book' book.id %}" class="list-group-item list-group-item-action list-group-item-primary">{{ forloop.counter }}. {{ book.name }}</a></h6>
   {% endfor %}
 </div>
 {% endblock %}
