@@ -33,13 +33,22 @@ def book(request, book_id):
     return render(request, 'book.html', context)
 
 
-def video(request):
+def video_all(request):
     """Страница отражения всех видеолекций"""
     all_video = VideoMaterial.objects.all()
     context = {
         'all_video': all_video,
     }
     return render(request, 'video_all.html', context)
+
+
+def video(request, video_id):
+    """Страница отражения выбранной видеолекции"""
+    video=get_object_or_404(VideoMaterial, id=video_id)
+    context = {
+        'video': video
+    }
+    return render(request, 'video.html', context)
 
 
 def index(request):
