@@ -2,14 +2,42 @@
 
 {% load static %}
 
+{% load thumbnail %}
+
 {% load bootstrap5 %}
 
 {% block content %}
 
-<div class="list-group">
+<!--<div class="list-group">
   <h3><a href="#" class="list-group-item list-group-item-action">Список всех учебников:</a></h3>
   {% for book in books %}
-  <h6><a href="{% url 'english_teacher:book' book.id %}" class="list-group-item list-group-item-action list-group-item-primary">{{ forloop.counter }}. {{ book.name }}</a></h6>
+  <h6><a href="{% url 'english_teacher:book' book.id %}" class="list-group-item list-group-item-action list-group-item-primary">{{ forloop.counter }}. {{ book.name }}</a>
+  {% thumbnail book.image "150x200" crop="150%" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+  {% endthumbnail %}
+  </h6>
   {% endfor %}
-</div>
+</div> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название Учебника</th>
+      <th scope="col">Изображение</th>
+    </tr>
+  </thead>
+  {% for book in books %}
+  <tbody>
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><h3><a style="text-decoration: none;" href="{% url 'english_teacher:book' book.id %}">{{ book.name }}</a></h3></td>
+      <td>
+        {% thumbnail book.image "70x100" crop="100%" as im %}
+          <a href="{% url 'english_teacher:book' book.id %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+        {% endthumbnail %}
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 {% endblock %}

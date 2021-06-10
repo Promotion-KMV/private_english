@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 # from datetime import date
 import datetime
+from sorl.thumbnail import ImageField
 from .managers import CustomUserManager
 
 
@@ -66,7 +67,6 @@ class VideoMaterial(models.Model):
     """Модель видеоматериалов"""
     name = models.CharField(max_length=100,)
     video = models.FileField(upload_to='media/')
-    # name_homework = models.ForeignKey('HomeWork', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -80,6 +80,7 @@ class StudyBooks(models.Model):
     """Модель учебников"""
     name = models.CharField(max_length=100, unique=True)
     book = models.FileField(upload_to='books/')
+    image = models.ImageField(blank=True, upload_to='books/image', verbose_name='Изображение')
 
     def get_absolute_url(self):
         return reverse(f'media/{self.book}')

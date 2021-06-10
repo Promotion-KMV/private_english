@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'sorl.thumbnail',
     'english_teacher',
     'account',
     'bootstrap5',
@@ -95,6 +96,16 @@ TEMPLATES = [
         },
     },
 ]
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'default': {
+            'size': (96, 96),
+            'crop': 'scale',
+        },
+    },
+}
+THUMBNAIL_BASEDIR = 'thumb'
 
 WSGI_APPLICATION = 'english.wsgi.application'
 

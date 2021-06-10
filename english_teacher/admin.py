@@ -38,7 +38,7 @@ class TeacherAdmin(admin.ModelAdmin):
 @admin.register(StudyBooks)
 class StudyBooksAdmin(admin.ModelAdmin):
     inlines = [AudioBookInline]
-    list_display = ('name', 'book',)
+    list_display = ('name', 'book', 'image')
 
 
 @admin.register(VideoMaterial)
