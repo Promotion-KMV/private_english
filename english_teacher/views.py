@@ -15,7 +15,11 @@ import datetime
 
 def books(request):
     """Страница отображения всех учебников"""
-    books = StudyBooks.objects.all()
+    searh_query = request.GET.get('search_books', '')
+    if searh_query:
+        books = StudyBooks.objects.filter(name__icontains=searh_query)
+    else:
+        books = StudyBooks.objects.all()
     context = {
         'books': books,
     }

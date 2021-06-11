@@ -4,7 +4,6 @@ let jsVariable = JSON.parse(document.getElementById('homework-words').textConten
 const App = {
     data() {
         return {
-
             jsVariable,
             dobleJsVariable: {},
             jsVariableValue: {},
@@ -24,8 +23,7 @@ const App = {
             activeDisplay: 'inline',
             activeDisplaySecond: 'none',
             inputValue: '',
-            gif: 'none',
-            
+            gif: 'none',            
         }
     },
     methods: {
@@ -85,8 +83,6 @@ const App = {
                 this.message = "Вы ответили верно"
                 this.showDict(this.dobleJsVariable);
                 this.allValue(this.jsVariableValue);
-                console.log(this.countWord)
-
             }
             else {
                 this.countWord[this.engWord] -- 
@@ -135,7 +131,6 @@ const App = {
                 this.countWord[this.rusWord] ++
                 if (this.countWord[this.rusWord] > 3) {
                     delete this.jsVariable[this.engWord]
-                    console.log(this.jsVariable)
                 }
                 if (Object.keys(this.jsVariable).length == 0) {
                     this.activeDisplaySecond = 'none'

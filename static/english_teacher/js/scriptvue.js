@@ -100,7 +100,6 @@ const App = {
             .then(data => {
                 this.sendRewiew = true
                 this.successReviewFunc()
-                console.log(datas, 'все ок');
                 this.closeAlertTime(this.successMessageReview)
 
             }).catch(() => {
