@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    {% for video in all_video %}
-    <div style="text-align: center;">
-        <h3>{{ forloop.counter }}. 
+<table style='max-width: 800px; margin: auto;' class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название урока</th>
+    </tr>
+  </thead>
+  {% for video in all_video %}
+  <tbody>
+    <tr>
+      <th scope="row"><h4>{{ forloop.counter }}</h4></th>
+      <td>
+        <h4>
             <a style="text-decoration: none;" target="_blank" href="{% url 'english_teacher:video' video.id %}">{{ video.name }}</a>
-        </h3>
-    </div>
-    {% endfor %}
+        </h4>
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 
 {% endblock %}
 

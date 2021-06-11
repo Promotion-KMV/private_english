@@ -8,16 +8,11 @@
 
 {% block content %}
 
-<!--<div class="list-group">
-  <h3><a href="#" class="list-group-item list-group-item-action">Список всех учебников:</a></h3>
-  {% for book in books %}
-  <h6><a href="{% url 'english_teacher:book' book.id %}" class="list-group-item list-group-item-action list-group-item-primary">{{ forloop.counter }}. {{ book.name }}</a>
-  {% thumbnail book.image "150x200" crop="150%" as im %}
-    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-  {% endthumbnail %}
-  </h6>
-  {% endfor %}
-</div> -->
+<form style="display: flex; justify-content: center;" class="form-inline my-2 my-lg-0" action="{% url 'english_teacher:books_all' %}">
+  <h3>Поиск по названию: &nbsp;</h3>
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_books">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+</form>
 <table class="table">
   <thead>
     <tr>
