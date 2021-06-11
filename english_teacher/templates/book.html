@@ -5,37 +5,7 @@
 {% load bootstrap5 %}
 
 {% block content %}
-    <!--{% for book in books %}
-    <div style="display:flex; flex-direction: column; padding-left: 50px;">
-        <h3>{{ forloop.counter }}. <a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3>    
-    </div>
-    <div id="accordion">
-      <div class="card">
-        <div class="card-header" id="headingOne{{book.id}}">
-          <h2 class="mb-0">
-            <button data-target="#collapseOne{{book.id}}" aria-expanded="true" class="btn btn-link" data-toggle="collapse"  aria-controls="collapseOne{{book.id}}">
-              {% for audio_book in audio %}
-                {% if audio_book.name_book_id == book.id %}
-                <p><span style="color: red; font-size: 2.6vh;">Аудио к учебнику "{{book.name}}"</span></p>
-            </button>
-          </h2>
-        </div>
-        <div id="collapseOne{{book.id}}" class="collapse" aria-labelledby="headingOne{{book.id}}" data-parent="#accordion">
-          <div style="display:flex" class="card-body">
-            <p style="margin-top: 10px;">{{ audio_book.name }} - </p>
-            <audio controls="controls">
-                <source src="{{ audio_book.audio.url }}" type="audio/mpeg" />
-                {% endif %}
-              {% endfor %}
-                {% if audio_book.name_book_id != book.id %}
-                  <p style="all: initial; font-size: 2.6vh; color: black;">Аудио к учебнику "{{book.name}}" нет</p>
-                {% endif %}
-            </audio>   
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}-->
+
 <h3 class="p-3"><a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3> 
 {% if all_audio %}
 {% for audio in all_audio %}
@@ -47,7 +17,7 @@
 </div>
 {% endfor %}
 {% else %}
-    <p>К этому учебнику нет аудио</p>
+    <h5 class='p-3'>К этому учебнику нет аудио</h5>
 {% endif %}
 {% endblock %}
 {% block script %}
