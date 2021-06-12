@@ -29,7 +29,11 @@ def books(request):
 def book(request, book_id):
     """Страница отображения учебника с аудио()если есть"""
     book = get_object_or_404(StudyBooks, id=book_id)
-    all_audio = StudyAudioBook.objects.filter(name_book=book_id)
+    searh_query = request.GET.get('search_audio', '')
+    if searh_query:
+        all_audio = StudyAudioBook.objects.filter(name_book=book_id, name__icontains=searh_query)
+    else:
+        all_audio = StudyAudioBook.objects.filter(name_book=book_id)
     context = {
         'all_audio': all_audio,
         'book': book,
@@ -57,8 +61,8 @@ def video(request, video_id):
 
 def index(request):
     """Главная страница"""
-    if request.user.is_authenticated:
-        return render(request, 'main_info.html',) 
+    if request.user.is_authenticated or request.user.is_staff:
+        return render(request, 'main_info.html',)
 
     return render(request, 'index.html')
 

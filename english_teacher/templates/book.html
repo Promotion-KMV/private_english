@@ -6,8 +6,15 @@
 
 {% block content %}
 
-<h3 class="p-3"><a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}"> {{ book.name }}</a></h3> 
+  <h3 class="p-3">Учебник.<a style='text-decoration: none;' target="_blank" href="{{ book.book.url }}">{{ book.name }}</a></h3>
+
 {% if all_audio %}
+<h3 style="display: flex; justify-content: center;">Аудио к учебнику</h3>
+<form style="display: flex; justify-content: center;" class="form-inline my-2 my-lg-0" action="{% url 'english_teacher:book' book.id %}">
+  <h3>Введите номер юнита или страницы: &nbsp;</h3>
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_audio">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+</form>
 {% for audio in all_audio %}
 <div style="display: inline-block;" class="p-3">
   <p>{{audio.name}}</p>

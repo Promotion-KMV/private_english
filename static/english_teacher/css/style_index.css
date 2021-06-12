@@ -100,6 +100,7 @@
     border-radius: 10px;
 
 }
+
 .text_one {
     color: black;
     font-weight: 700;
@@ -345,8 +346,10 @@ footer  {
     }
     .rewiew_list {
         max-width: 100vw;
+    }
 }
-}
+
+
 
 @media screen and (max-width: 800px){
     #about_me_nav, #my_advantage_nav, #contact_for_me_nav,
@@ -388,7 +391,7 @@ footer  {
 .education {
     /* display: none; */
     text-align: center;
-    margin-top: 50px;
+    margin-top: 3vh;
     margin-left: 10px;
     width: 35vw;
     opacity: 1;
@@ -477,14 +480,22 @@ footer  {
     .price {
     height: max(90vh,600px);
    }
-<<<<<<< HEAD
+
 }
 
-=======
-}
-<<<<<<< HEAD
+@media screen and (max-height: 850px){
+    .education_text, .experience_text, .why_teach_text{
+        font-size: 100%;
+    }
+    .experience, .why_teach {
+            margin-top: 1%;
+    }
+    .text_two {
+        font-size: 75%;
+    }
 
-=======
+    .advantages_text_third {
+        margin-top: 5vh;
+    }
+
 }
->>>>>>> c0b55f5de9f52f0fb215ffa32679de8ae9409749
->>>>>>> a4f34d61a792f79edd19ef47ee24d4f0379c03bb

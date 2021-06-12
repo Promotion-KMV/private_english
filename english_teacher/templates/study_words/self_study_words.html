@@ -7,28 +7,30 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div style='display:flex; flex-direction: column;'>
-    <h3 style="text-algin: center; margin: auto;">Введите слова для изучения</h3>
+<div style="text-align: center;">
+    <h3>Введите слова для изучения</h3>
 
-    <form id="register-form" name="register-form" style="text-algin: center; margin: auto; padding-top: 20px;" method="post">
+    <form id="register-form" name="register-form" method="post">
         {% csrf_token %}
-        <div style="text-algin: center;">
-            <div style='display:flex; justify-content: center;' >
+        <div>
+            <div>
                 {{ formset_name.as_p }}
             </div>
             <div>
-                <div style="padding-top: 5px;width: 1000px;">
-                   {{ formset }}
+                {% for f in formset %}
+                <div class="pt-2">
+                   {{ f.english_word }} - {{ f.rus_word }}
                 </div>
+                {% endfor %}
             </div>
         </div>
-        <p style="display: flex; justify-content: center;" >Мы не рекомендуем изучать больше 10 слов за день. Но вы всегда можете создать новый словарь. <br> Так же есть минимальй порог изучения, он составляет 5 слов.</p>
-        <h6 style="max-width: 900px;">Внимание!!!Перед тем как нажать кнопку "начинаем учить" Внимательно просмотрите введенные вами слова на наличие грамматических ошибок.(<i>Приложение настроенно на точное совпадение с введенными вами словами.</i>).Исправить ошибку в дальнейшем возможно только созданием нового словаря.</h6>
-        <div style="display: flex; justify-content: center;">
+        <div class="pt-2">
             <button type="submit" class="btn btn-primary">Начинаем учить!</button>
         </div>
     </form>
+    <div style='max-width: 700px; margin: auto;'>
+        <p>Мы не рекомендуем изучать больше 10 слов за день. Но вы всегда можете создать новый словарь. Так же есть минимальй порог изучения, он составляет 5 слов.</p>
+        <h6>Внимание!!!Перед тем как нажать кнопку "начинаем учить" Внимательно просмотрите введенные вами слова на наличие грамматических ошибок.(<i>Приложение настроенно на точное совпадение с введенными вами словами.</i>).Исправить ошибку в дальнейшем возможно только созданием нового словаря.</h6>
+    </div>
 </div>
-
-{{last_words_name}}
 {% endblock %}
