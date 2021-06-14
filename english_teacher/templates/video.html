@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 <div style="text-align: center;" class='p-3'>
     <h3>{{ video.name }}</h3>
-    <video style="width: 70vw; height: 70vh;" controls>
-        <source src="{{ video.video.url }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    <video style="width: 70vw; height: 70vh;" id="video-player" preload="auto" controls>
+        <source src="{{ video.video.url }}" type="video/mp4">
     </video>
-</div>
+<!--     <progress id="progress" style='width: 70vw;' max="100" value='0'></progress>
+   <div>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="speed-up">Быстрее</button>
+        <button id="speed-down">Медленнее</button>
+        <button>
+            <label for="volume">Звук</label>
+            <input name="volume" type="range" id="volume" min=0 max=100 value="Звук">
+        </button>
+    </div>    
+</div>-->
 
 {% endblock %}
 
+<!--{% block script %}
+    <script src="{% static 'english_teacher/js/video.js' %}"></script>
+{% endblock script %} -->

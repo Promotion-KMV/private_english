@@ -169,7 +169,7 @@ class ModelUrlText(models.Model):
     name_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='model_url_text')
     url = models.URLField(max_length=300)
     text = models.TextField(null=True, blank=True)
-    date_url_create = models.DateTimeField(default=datetime.datetime.now())
+    date_url_create = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Ссылка на занятие'

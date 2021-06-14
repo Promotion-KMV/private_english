@@ -1,15 +1,28 @@
+{% load bootstrap5 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'udemy_cource_base/css/udemy_base_style.css' %}" type="text/css">
+    <title>Udemy Home Work</title>
 </head>
 <body>
-    <h1>Hello</h1>
-    {% for home_work in homework %}
-        <a href="{{ home_work.get_absolute_url }}">{{home_work.name}}}</a>
-        <p>{{ home_work.text }}</p>
-    {% endfor %}
+    <div class="head">
+        <h1>Здравствуйте мы приветствуем вас на обучающей платформе <span style="color: red;">Privatenglishtutor!</span></h1>
+        <h2>Для того чтобы узнать о нас подробнее кликай <a href="{% url 'english_teacher:index' %}">Сюда</a></h2>
+    </div>
+    <div>
+        <h4 style='text-align: center;'>В этом блоке будут расположены все домашние задания курса.</h4>
+        <div style='display: flex; flex-wrap: wrap'>
+        {% for h in homework %}    
+            <a href="{% url 'udemy_course_base:udemy_homework' h.slug %}"><div class="homework">
+                <h2 style="padding-left: 10px;">{{h.name}}</h2>
+            </div></a>
+        {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

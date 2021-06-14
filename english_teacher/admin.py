@@ -59,4 +59,4 @@ class SelfWordsStudyNameAdmin(admin.ModelAdmin):
 
 @admin.register(ModelUrlText)
 class SelfStudyWordsAdmin(admin.ModelAdmin):
-    list_display = ('url', 'text')
+    list_display = ('name_user', 'url', 'text')
