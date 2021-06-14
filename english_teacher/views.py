@@ -7,6 +7,7 @@ from django.utils.encoding import *
 from django.core.mail import EmailMessage
 from django.forms import formset_factory
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
@@ -41,15 +42,16 @@ def book(request, book_id):
     return render(request, 'book.html', context)
 
 
+@login_required
 def video_all(request):
     """Страница отражения всех видеолекций"""
-    all_video = VideoMaterial.objects.all()
+    all_video = VideoMaterial.objects.all().order_by('name')
     context = {
         'all_video': all_video,
     }
     return render(request, 'video_all.html', context)
 
-
+@login_required
 def video(request, video_id):
     """Страница отражения выбранной видеолекции"""
     video=get_object_or_404(VideoMaterial, id=video_id)
@@ -98,7 +100,7 @@ def homework(request, user_id):
     }
     return render(request, 'homework/homework.html', context)
 
-
+@login_required
 def studyhomework(request, work_id):
     '''Домашнее задание'''
     homework = get_object_or_404(HomeWork, id=work_id)

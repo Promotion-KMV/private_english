@@ -96,15 +96,18 @@ class StudyBooks(models.Model):
 class HomeWork(models.Model):
     """Модель домашних заданий"""
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
-                                    related_name='user_homework')
+                                    related_name='user_homework', verbose_name='Выбор ученик')
     book = models.ForeignKey(StudyBooks, on_delete=models.CASCADE,
-                             null=True, blank=True, related_name='user_book')
+                             null=True, blank=True, related_name='user_book',
+                             verbose_name = 'Выбор учебника')
     audio = models.ForeignKey('StudyAudioBook', on_delete=models.CASCADE,
-                              null=True, blank=True, related_name='user_audio')
-    video = models.ForeignKey(VideoMaterial, on_delete=models.CASCADE, null=True, blank=True)
-    remark = models.TextField(null=True, blank=True)
+                              null=True, blank=True, related_name='user_audio',
+                              verbose_name = 'Выбор аудио')
+    video = models.ForeignKey(VideoMaterial, on_delete=models.CASCADE, null=True, 
+                                blank=True, verbose_name='Выбор видео')
+    remark = models.TextField(null=True, blank=True, verbose_name='Пояснение к заданию')
     date_next_exercise = models.DateTimeField(verbose_name='Дата следующего занятия', null=True, blank=True) 
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'Домашнее задание'
