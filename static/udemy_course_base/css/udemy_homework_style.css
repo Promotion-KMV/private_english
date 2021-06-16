@@ -1,0 +1,18 @@
+body {
+    background-image: url(../src/fon_udemy.jpg);
+    background-repeat: no-repeat;
+    width: auto;
+    height: max(100vh,600px);
+    background-position: 50%;
+    background-size: cover;
+}
+
+.conteiner {
+    text-align: center;
+}
+
+.title-homework {
+    text-align: center;
+    color: #EF2929FF;
+    font-size: 150%;
+}

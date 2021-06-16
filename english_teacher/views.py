@@ -105,19 +105,20 @@ def studyhomework(request, work_id):
     '''Домашнее задание'''
     homework = get_object_or_404(HomeWork, id=work_id)
     studywords = StudyWords.objects.filter(home_work=work_id)
-    studybook = get_object_or_404(StudyBooks, name=homework.book)
-    studyaudio = StudyAudioBook.objects.all()
-    book_url = studybook.book.url
-    audio = StudyAudioBook.objects.all()
-    video = VideoMaterial.objects.all()
+    studyhomework = DetailHomeWork.objects.filter(homework=homework)
+    # studyaudio = StudyAudioBook.objects.all()
+    # book_url = studybook.book.url
+    # audio = StudyAudioBook.objects.all()
+    # video = VideoMaterial.objects.all()
     context = {
         'homework': homework,
         'studywords': studywords,
-        'studybook': studybook,
-        'book_url': book_url,
-        'audio': audio,
-        'studyaudio': studyaudio,
-        'video': video,
+        'studyhomework': studyhomework,
+        # 'studybook': studybook,
+        # 'book_url': book_url,
+        # 'audio': audio,
+        # 'studyaudio': studyaudio,
+        # 'video': video,
 
     }
     return render(request, 'homework/studyhomework.html', context)
@@ -219,6 +220,7 @@ def self_study_words(request, word_study):
         'dict_words': dict_words
     }
     return render(request, 'study_words/study_words.html', context)
+
 
 
 '''Блок DRF'''

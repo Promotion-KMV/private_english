@@ -2,26 +2,31 @@
 
 {% load static %}
 
-{% block content %}
-<div style="display:flex; flex-direction: column; padding: 50px;">
-    <h5><a style='text-decoration: none;' target="_blank" href="{{ book_url }}"> {{ homework.book }}</a></h5>
-    <p>Прослушать аудио к учебникам</p>
-    <audio controls="controls">
-        <source src="{{ homework.audio.audio.url }}" type="audio/mpeg" />
-    </audio>
-    <hr>
-    <p>{{ homework.remark }}</p>
-    {% if homework.video %}
-        <h6>просмотреть видео урок</h6>
-        <video width="400" height="300" controls="controls" poster="video/duel.jpg">
-            <source src="{{ homework.video.video.url }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        </video>
-    {% endif %}
-    <hr>
-    {% if studywords %}        
-        <a style='text-decoration: none;' href="{% url 'english_teacher:studywords' homework.id %}">Учить слова</a>    
-    {% endif %}
-</div>
 
+
+{% block content %}
+<div style="text-align:center">
+    {% for h in studyhomework %}
+    <div class="p-2">
+        <h3 class="p-1">Задание №{{ forloop.counter }}</h3>
+        <h4 class="p-1">Учебник:<a style='text-decoration: none;' target="_blank" href="{{ h.book.book.url }}"> {{ h.book }}</a></h4>
+        <h6 class="p-1"> {{ h.review }}</h6>
+        <audio class="p-1" controls="controls">
+            <source src="{{ h.audio.audio.url }}" type="audio/mpeg" />
+        </audio>
+    </div>
+    {% endfor %}
+    <div class="p-2">
+    {% if studywords %}
+            <h6>Вам необходимо выучить следующие слова </h6>
+            <p>(
+        {% for s in studywords %}
+                {{s.english_word}} - {{ s.rus_word }},
+        {% endfor %}
+            )</p>
+        <button type="button" class="btn btn-warning"><a style='text-decoration: none;' href="{% url 'english_teacher:studywords' homework.id %}">Учить слова</a></button>    
+    {% endif %}
+    </div>
+</div>
 
 {% endblock %}

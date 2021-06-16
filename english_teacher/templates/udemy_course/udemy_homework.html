@@ -1,15 +1,37 @@
+
+{% load static %}
+
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'udemy_course_base/css/udemy_homework_style.css' %}" type="text/css">
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+    <title>Privatenglishtutor</title>
 </head>
 <body>
-    <p>{{homework.name}}</p>
-    <p>{{homework.text}}</p>
-    {% for studyword in studywords %}
-        <p>{{studyword.english_word}} - {{studyword.rus_word}}</p>
-    {% endfor %}
+    <div class="conteiner">
+        <div class='title-homework'>
+            <h3 class='title-theme'>Домашнее задание к занятию - {{homework.name}}</h3>
+            <p>{{homework.text}}</p>
+        </div>
+        <div>
+        {% for bh in book_homework %}        
+            <h2 class="p-3">Учебник.<a style='text-decoration: none;' target="_blank" href="{{ bh.book_name.book.url }}">{{ bh.book_name }}</a></h2>
+            <h3 style="display: inline-block; padding: 1%; border-radius: 10px; background-color: hsla(0, 0%, 50%, 0.3);">{{ bh.review }}</h3>
+        {% endfor %}
+        </div>
+        <div>
+            <h2>Выучить слова</h2>
+            {% for studyword in studywords %}
+                <h3 style='padding: 1%; display: inline-block;'>{{studyword.english_word}} - {{studyword.rus_word}}, </h3>
+            {% endfor %}
+        </div>
+        <button type="button" class="btn btn-warning"><a style='text-decoration: none;' href="{% url 'udemy_course_base:study_words_udemy' homework.id %}">Учить слова</a></button> 
+    </div>
 </body>
 </html>

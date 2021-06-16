@@ -1,6 +1,4 @@
-let jsVariable = JSON.parse(document.getElementById('homework-words').textContent);
-
-
+let jsVariable = JSON.parse(document.getElementById('study_words').textContent);
 const App = {
     data() {
         return {
@@ -217,7 +215,6 @@ const App = {
             this.activeDisplaySecond = 'none'
             this.btnNext = 'd-none'
             this.showDict(this.jsVariableValue);
-            // this.allValueTwo(this.jsVariableValue);
         },
 
         inputClickTwo(event) {
@@ -275,6 +272,4 @@ const App = {
         this.CountProgress()
     }
 }
-
-
-Vue.createApp(App).mount('#study_app_one')
+Vue.createApp(App).mount('#study_words_udemy')

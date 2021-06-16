@@ -19,6 +19,6 @@ urlpatterns = [
     path('send_message/<str:sub>/<str:email>/<str:message>', send_message, name='send_message'),
     path('studywords', self_study_word, name='self_study_words'),
     path('list_study_word', list_study_word, name='list_study_word'),
-    path('self_study_words/<int:word_study>', self_study_words, name='study_words')
+    path('self_study_words/<int:word_study>', self_study_words, name='study_words'),
 ]
 

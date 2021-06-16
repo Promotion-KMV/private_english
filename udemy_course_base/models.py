@@ -1,4 +1,5 @@
 from django.db import models
+from english_teacher.models import *
 
 from django.urls import reverse
 
@@ -30,4 +31,11 @@ class CourseStudyword(models.Model):
     class Meta:
         verbose_name = 'Изучение слов курса'
         verbose_name_plural = 'Изучение слов курса'
+
+
+class BookForHomeWork(models.Model):
+    name = models.ForeignKey(CourseBase, on_delete=models.CASCADE,)
+    book_name = models.ForeignKey(StudyBooks, on_delete=models.CASCADE, verbose_name='Учебник',
+                                  null=True, blank=True)
+    review = models.TextField(verbose_name='Задание')
 

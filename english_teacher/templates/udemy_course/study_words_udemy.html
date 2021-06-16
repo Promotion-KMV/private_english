@@ -1,4 +1,6 @@
+
 {% load bootstrap5 %}
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -6,16 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://unpkg.com/vue@next"></script>
-    <title>Document</title>
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_150214.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Учим слова</title>
+
 </head>
 <body>
-
-    <div>{{dict_words|json_script:'homework-words'}}
-        
+    <div>{{dict_words|json_script:'study_words'}}
         {% verbatim %}
-        <div id="study_app_one">
+        <div id="study_words_udemy" v-cloak>
             <h2 class='m-2' style="text-align: center;"> {{ messageFirst }} </h2>
             <div :style="{display: activeDisplay}">           
                 <div style="text-align: center;" v-text="message"  class="alert" :class="[activeClass, dispStart]" role="alert">
@@ -82,15 +88,16 @@
                 </div>
             </div>
             <div :style='{display: gif}'>
-                {% endverbatim %}
+        {% endverbatim %}
                 <div style="text-align: center; margin-top: 10%;">
                     <img src="../../static/english_teacher/src/you are the best.gif" alt="">
                 </div>
-                <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:index' %}">Назад</a></button>
+                <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'udemy_course_base:udemy_homework' homework.slug%}">В начало</a></button>
             </div>
         </div>
 
     </div>
-    <script src="{% static 'english_teacher/js/study_word_homework.js' %}"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="{% static 'udemy_course_base/js/study_words_udemy.js' %}"></script>
 </body>
 </html>

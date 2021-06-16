@@ -10,6 +10,14 @@ class StudyWordsInline(admin.TabularInline):
     extra = 5
 
 
+class DetailHomeWorkInline(admin.TabularInline):
+    model = DetailHomeWork
+    fields = ('book', 'review', 'audio')
+    extra = 2
+    # search_fields = ['audio']
+    autocomplete_fields = ['audio']
+
+
 class AudioBookInline(admin.TabularInline):
     model = StudyAudioBook
     fields = ('audio', 'name')
@@ -24,9 +32,10 @@ class StudyAudioBookAdmin(admin.ModelAdmin):
 
 @admin.register(HomeWork)
 class HomeWorkAdmin(admin.ModelAdmin):
-    inlines = [StudyWordsInline]
-    list_display = ('custom_user', 'id', 'book', 'audio', 'date')
-    autocomplete_fields = ['audio']
+    inlines = [DetailHomeWorkInline, StudyWordsInline]
+    # list_display = ('custom_user', 'id', 'book', 'audio', 'date')
+    # autocomplete_fields = ['audio']
+    list_display = ('custom_user',)
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):

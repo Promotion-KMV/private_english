@@ -95,17 +95,9 @@ class StudyBooks(models.Model):
 
 class HomeWork(models.Model):
     """Модель домашних заданий"""
+
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
                                     related_name='user_homework', verbose_name='Выбор ученик')
-    book = models.ForeignKey(StudyBooks, on_delete=models.CASCADE,
-                             null=True, blank=True, related_name='user_book',
-                             verbose_name = 'Выбор учебника')
-    audio = models.ForeignKey('StudyAudioBook', on_delete=models.CASCADE,
-                              null=True, blank=True, related_name='user_audio',
-                              verbose_name = 'Выбор аудио')
-    video = models.ForeignKey(VideoMaterial, on_delete=models.CASCADE, null=True, 
-                                blank=True, verbose_name='Выбор видео')
-    remark = models.TextField(null=True, blank=True, verbose_name='Пояснение к заданию')
     date_next_exercise = models.DateTimeField(verbose_name='Дата следующего занятия', null=True, blank=True) 
     date = models.DateField(auto_now=True)
 
@@ -116,8 +108,6 @@ class HomeWork(models.Model):
 
 class StudyAudioBook(models.Model):
     """Модель для аудиофайлов"""
-    name_homework = models.ForeignKey(HomeWork, on_delete=models.CASCADE,
-                                      null=True, blank=True, related_name='audio_homework')
     name_book = models.ForeignKey(StudyBooks, on_delete=models.CASCADE,
                                   null=True, blank=True, related_name='audio_book')
     name = models.CharField(max_length=50)
@@ -125,6 +115,15 @@ class StudyAudioBook(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DetailHomeWork(models.Model):
+    homework = models.ForeignKey(HomeWork, on_delete=models.CASCADE)
+    book = models.ForeignKey(StudyBooks, on_delete=models.CASCADE, verbose_name='Учебник',
+                             null=True, blank=True)
+    review = models.TextField()
+    audio = models.ForeignKey(StudyAudioBook, on_delete=models.CASCADE, verbose_name='Аудио',
+                              null=True, blank=True)
 
 
 class StudyWords(models.Model):
