@@ -42,3 +42,11 @@ input[type="checkbox"] {
         font-size: 60%;
     }    
 }
+
+label {
+    font-size: 0%;
+}
+
+label[class~="small_menu"] {
+    font-size: 100%;
+}

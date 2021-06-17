@@ -26,7 +26,7 @@ const App = {
             activeDisplayThree: 'none',
             inputValue: '',
             gif: 'none',
-            NumberAttempts: 0,
+            NumberAttempts: 3,
             ActiveCount: 0,
             countP: 1,
             countWordProgress: 0,

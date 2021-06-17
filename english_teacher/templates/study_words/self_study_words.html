@@ -14,14 +14,10 @@
         {% csrf_token %}
         <div>
             <div>
-                {{ formset_name.as_p }}
+                <p>Введите название вашего словаря:</p>{{ formset_name.as_p }}
             </div>
             <div>
-                {% for f in formset %}
-                <div class="pt-2">
-                   {{ f.english_word }} - {{ f.rus_word }}
-                </div>
-                {% endfor %}
+                <p style='margin: auto; max-width:600px;'>{{ formset }}</p>
             </div>
         </div>
         <div class="pt-2">
