@@ -1,0 +1,29 @@
+[v-cloak] {
+    display: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.padding_qustion {
+    padding: 1%;
+}
+
+.position_question {
+    display:flex;
+    padding-top: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+    img {
+        display: none;
+    }
+      
+}
