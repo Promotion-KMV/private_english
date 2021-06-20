@@ -44,7 +44,7 @@ input[type="checkbox"] {
 }
 .label_self_study {
     margin: auto;
-    width: 520px;
+    max-width: 520px;
 }
 
 label {
@@ -55,9 +55,9 @@ label[class~="small_menu"] {
     font-size: 100%;
 }
 
-@media screen and (min-width: 1500px) {
+/* @media screen and (min-width: 1500px) {
     .label_self_study {
         margin: auto;
         max-width: 520px;
     } 
-}
+} */
