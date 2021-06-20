@@ -44,7 +44,7 @@ input[type="checkbox"] {
 }
 .label_self_study {
     margin: auto;
-    max-width: 520px;
+    width: 520px;
 }
 
 label {
