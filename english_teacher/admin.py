@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-
 from .models import *
 
 
@@ -14,7 +13,6 @@ class DetailHomeWorkInline(admin.TabularInline):
     model = DetailHomeWork
     fields = ('book', 'review', 'audio')
     extra = 2
-    # search_fields = ['audio']
     autocomplete_fields = ['audio']
 
 
@@ -29,13 +27,11 @@ class StudyAudioBookAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
-
 @admin.register(HomeWork)
 class HomeWorkAdmin(admin.ModelAdmin):
     inlines = [DetailHomeWorkInline, StudyWordsInline]
-    # list_display = ('custom_user', 'id', 'book', 'audio', 'date')
-    # autocomplete_fields = ['audio']
-    list_display = ('custom_user',)
+    list_display = ('custom_user', 'name_user')
+
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
@@ -72,7 +68,6 @@ class SelfStudyWordsInline(admin.TabularInline):
 class SelfWordsStudyNameAdmin(admin.ModelAdmin):
     inlines = [SelfStudyWordsInline]
     list_display = ('user_name', 'name', 'date_study')
-
 
 
 @admin.register(ModelUrlText)

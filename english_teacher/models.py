@@ -98,6 +98,8 @@ class HomeWork(models.Model):
 
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
                                     related_name='user_homework', verbose_name='Выбор ученик')
+    name_user = models.CharField(max_length=50, verbose_name='Имя ученика', help_text='Указывать для семей с 2 детьми',
+                                 null=True, blank=True)
     date_next_exercise = models.DateTimeField(verbose_name='Дата следующего занятия', null=True, blank=True) 
     date = models.DateField(auto_now=True)
 
@@ -108,10 +110,10 @@ class HomeWork(models.Model):
 
 class StudyAudioBook(models.Model):
     """Модель для аудиофайлов"""
-    name_book = models.ForeignKey(StudyBooks, on_delete=models.CASCADE,
-                                  null=True, blank=True, related_name='audio_book')
+    key = models.ForeignKey(StudyBooks, on_delete=models.CASCADE, null=True, blank=True, related_name='audio_book')
+    # name_book = key
     name = models.CharField(max_length=50)
-    audio = models.FileField(upload_to=f'books/{name_book}/', null=True, blank=True)
+    audio = models.FileField(upload_to=f'books/{key}/', null=True, blank=True)
 
     def __str__(self):
         return self.name

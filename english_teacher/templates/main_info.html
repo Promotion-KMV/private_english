@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    <h3 style="padding-left: 10px;">{{ date }}</h3>
+    <h3 style="padding-left: 10px;">{{ date|date:'d-M-Y(D)' }}</h3>
 </div>
     {% if user.is_authenticated and user.is_staff == False and request.user.is_customer %}
     <div style="text-align: center;">
@@ -20,9 +20,9 @@
     </div>
     {% elif user.is_superuser or user.is_staff %}
     <div style='margin-left: 10px;'>
-        <h3>Запланированные занятия</h3>
-        {% for ecxercise in all_ecxercise %}
-            <p>{{ ecxercise.custom_user }} - {{ ecxercise.date_next_exercise }}</p>
+        <h3>Запланированные занятия:</h3>
+        {% for ecxercise in all_exercise %}
+            <p><span>{{forloop.counter}}.</span>{{ ecxercise.custom_user }} - {{ ecxercise.date_next_exercise }}</p>
         {% endfor %}
     </div>
     {% else %}

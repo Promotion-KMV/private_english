@@ -72,21 +72,22 @@ def index(request):
 def main_info(request):
     '''Главная страница зарегестрированного пользователя'''
     homework = HomeWork.objects.filter(custom_user=request.user).last()
-    date = datetime.datetime.now()
+    # date = datetime.datetime.now()
+    date = datetime.datetime.today()
     url_user = ''
     url = ModelUrlText.objects.filter(name_user=request.user).last()
-    if not url :
+    if not url:
         url = ''
     else:
         if date.timestamp() - url.date_url_create.timestamp() < 1800:
             url_user = ModelUrlText.objects.filter(name_user=request.user).last()
 
-    all_ecxercise = homework = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
+    all_ecxercise = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
     context = {
         'url_user': url_user,
         'homework': homework,
         'date': date,
-        'all_ecxercise': all_ecxercise
+        'all_exercise': all_ecxercise
     }
     return render(request, 'main_info.html', context)
 

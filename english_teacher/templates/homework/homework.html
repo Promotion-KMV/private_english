@@ -5,7 +5,12 @@
     <h3>Ваши домашние задания:</h3>
     {% if homework %}
         {% for work in homework %}
-        <h3>{{ forloop.counter }}. Домашнее задание от:<a style="text-decoration: none;" href="{% url 'english_teacher:studyhomework' work.id %}"> {{work.date}}</a></h3>
+        <h3>
+            {{ forloop.counter }}. Домашнее задание от:<a style="text-decoration: none;" href="{% url 'english_teacher:studyhomework' work.id %}"> {{work.date}}</a>
+            {% if work.name_user %}
+            (для ученика {{work.name_user}})
+            {% endif %}
+        </h3>
     {% endfor %}        
     {% else %}
         <p>Для вас пока нет домашнего задания</p>    
