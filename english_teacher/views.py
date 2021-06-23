@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse_lazy
 from rest_framework import generics
 from english_teacher.serializers import ReviewSerializer
 from django.utils.encoding import *
@@ -32,9 +32,9 @@ def book(request, book_id):
     book = get_object_or_404(StudyBooks, id=book_id)
     searh_query = request.GET.get('search_audio', '')
     if searh_query:
-        all_audio = StudyAudioBook.objects.filter(name_book=book_id, name__icontains=searh_query)
+        all_audio = StudyAudioBook.objects.filter(key=book_id, name__icontains=searh_query)
     else:
-        all_audio = StudyAudioBook.objects.filter(name_book=book_id)
+        all_audio = StudyAudioBook.objects.filter(key=book_id)
     context = {
         'all_audio': all_audio,
         'book': book,
