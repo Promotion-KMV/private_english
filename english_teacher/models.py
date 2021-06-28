@@ -72,6 +72,7 @@ class VideoMaterial(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name = 'Видео урок'
         verbose_name_plural = 'Видео уроки'
 
@@ -89,6 +90,7 @@ class StudyBooks(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name = 'Учебник'
         verbose_name_plural = 'Учебники'
 

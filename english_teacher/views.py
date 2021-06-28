@@ -54,7 +54,7 @@ def video_all(request):
 @login_required
 def video(request, video_id):
     """Страница отражения выбранной видеолекции"""
-    video=get_object_or_404(VideoMaterial, id=video_id)
+    video = get_object_or_404(VideoMaterial, id=video_id)
     context = {
         'video': video
     }
