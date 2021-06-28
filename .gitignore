@@ -4,4 +4,4 @@ __pycache__/
 media/
 migrations/
 gunicorn*
-gunicorn_config*
+gunicorn_config.py
