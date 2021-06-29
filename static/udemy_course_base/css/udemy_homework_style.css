@@ -13,6 +13,13 @@ body {
 
 .title-homework {
     text-align: center;
-    color: #EF2929FF;
     font-size: 150%;
+}
+
+.title-homework-text {
+    text-align: center;
+    margin: auto;
+    font-style: oblique;
+    font-weight: bold;
+    max-width: 80vw;
 }
