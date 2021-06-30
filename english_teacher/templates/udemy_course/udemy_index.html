@@ -18,7 +18,7 @@
         <h4 style='text-align: center;'>В этом блоке будут расположены все домашние задания курса.</h4>
         <div style='display: flex; flex-wrap: wrap'>
         {% for h in homework %}    
-            <a href="{% url 'udemy_course_base:udemy_homework' h.slug %}"><div class="homework">
+            <a style='text-align: center; margin: auto;' href="{% url 'udemy_course_base:udemy_homework' h.slug %}"><div class="homework">
                 <h2 style="padding-left: 10px;">{{h.name}}</h2>
             </div></a>
         {% endfor %}
