@@ -137,7 +137,7 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                .then(data => data.text())
+                // .then(data => data.text())
                 .then(function(response) {
                     if (!response.ok) {
                         throw Error(response.statusText);
