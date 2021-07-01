@@ -89,7 +89,7 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
+            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`,
                 method: "POST",
                 headers: { 
                     "X-CSRFToken": csrftoken,
@@ -119,7 +119,7 @@ const App = {
                 this.getReviews();
             };
         },
-        sendMessage() {
+        async sendMessage() {
             let csrftoken = Cookies.get('csrftoken');
             let datas = {
                 email: this.emailText,
@@ -132,28 +132,28 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
+                const b = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
                         'Content-type': 'application/json'
                     },
                 })
-                .then(data => data.text())
-                .then(data => {
-                    this.successFunc()
-                    this.sendOneMessage = true
-                    console.log(datas, 'все ок');
-                    this.closeAlertTime(this.successMessage)
-                }).catch(() => {
-                    this.errorFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.errorMessage)
-                }).finally(() => {
-                    console.log('finally')
-                    this.sendMessageForm = 'none'
-                    this.sendOneMessage = true
-                });
+                    .then(data => data.text())
+                    .then(data => {
+                        this.successFunc()
+                        this.sendOneMessage = true
+                        console.log(datas, 'все ок');
+                        this.closeAlertTime(this.successMessage)
+                    }).catch(() => {
+                        this.errorFunc()
+                        this.sendOneMessage = true
+                        this.closeAlertTime(this.errorMessage)
+                    }).finally(() => {
+                        console.log('finally')
+                        this.sendMessageForm = 'none'
+                        this.sendOneMessage = true
+                    });
             }
     
         },

@@ -187,8 +187,21 @@
     padding: 1vw;
 }
 .video {
-    padding-top: 55vh;
-    padding-left: 5vw;"
+    padding-top: 30vh;
+    padding-left: 5vw;
+}
+
+.need_study {
+    width: 40%;
+    max-height: 40%;
+    padding-top: 20px;
+    margin: 40px auto;
+    margin-left: 5%;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+    color: #3CF0ECFF;
+    background-color: hsla(0, 0%, 50%, 0.3);
 }
 
 .video_promotion {
@@ -372,13 +385,16 @@ footer  {
         margin-top: 5vh;
     }
     .video_promotion {
-        width: 80vw;
-        height: 60vh;
+        width: 70vw;
+        height: 50vh;
     }
     .video {
-        padding-top: 25vh;
+        padding-top: 5vh;
         padding-left: 0;
         text-align: center;
+   }
+   .need_study {
+        width: 90%;
    }
    .price_coast {
         font-size: 20px;
