@@ -137,7 +137,6 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                console.log(b, 'Это и')
                 .then(data => data.text())
                 .then(function(response) {
                     if (!response.ok) {
