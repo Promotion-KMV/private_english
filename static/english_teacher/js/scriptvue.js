@@ -139,6 +139,7 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
+                    console.log(b)
                     .then(data => data.text())
                     .then(data => {
                         this.successFunc()
@@ -149,6 +150,7 @@ const App = {
                         this.errorFunc()
                         this.sendOneMessage = true
                         this.closeAlertTime(this.errorMessage)
+                        console.log('error')
                     }).finally(() => {
                         console.log('finally')
                         this.sendMessageForm = 'none'
