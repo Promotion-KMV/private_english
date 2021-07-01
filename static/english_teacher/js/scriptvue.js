@@ -89,33 +89,33 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`,
+            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
                 method: "POST",
                 headers: { 
                     "X-CSRFToken": csrftoken,
                     'Content-type': 'application/json'
                 },
             })
-            .then(data => data.text())
-            .then(data => {
-                this.sendRewiew = true
-                this.successReviewFunc()
-                this.closeAlertTime(this.successMessageReview)
+                .then(data => data.text())
+                .then(data => {
+                    this.sendRewiew = true
+                    this.successReviewFunc()
+                    this.closeAlertTime(this.successMessageReview)
 
-            }).catch(() => {
-                this.errorFuncReview()
-                this.closeAlertTime(this.errorMessageReview)
-                this.sendRewiew = true
+                }).catch(() => {
+                    this.errorFuncReview()
+                    this.closeAlertTime(this.errorMessageReview)
+                    this.sendRewiew = true
 
 
-            }).finally(() => {
-                this.sendRewiew = true
-                console.log(jsDomain)
-                this.nameReview = ''
-                this.textReview = ''
+                }).finally(() => {
+                    this.sendRewiew = true
+                    console.log(jsDomain)
+                    this.nameReview = ''
+                    this.textReview = ''
 
-            });            
-            created: {
+        });            
+        created: {
                 this.getReviews();
             };
         },
@@ -140,8 +140,8 @@ const App = {
                     },
                 })
                     console.log(b)
-                    .then(data => data.text())
-                    .then(data => {
+                    b.then(data => data.text())
+                    b.then(data => {
                         this.successFunc()
                         this.sendOneMessage = true
                         console.log(datas, 'все ок');
