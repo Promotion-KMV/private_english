@@ -114,11 +114,9 @@ const App = {
                     this.nameReview = ''
                     this.textReview = ''
 
-        });            
-        created: {
-                this.getReviews();
-            };
+            });
         },
+
         async sendMessage() {
             let csrftoken = Cookies.get('csrftoken');
             let datas = {
@@ -132,7 +130,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                const b = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
+                await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
