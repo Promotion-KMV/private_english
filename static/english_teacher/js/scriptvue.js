@@ -134,9 +134,10 @@ const App = {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
-                        'Content-type': 'application/json'
+                        // 'Content-type': 'application/json'
                     },
                 })
+                console.log(fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
                 .then(data => data.text())
                 .then(data => {
                     this.successFunc()
