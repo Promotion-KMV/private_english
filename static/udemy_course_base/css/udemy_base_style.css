@@ -8,6 +8,21 @@
     padding: 1em;
     background-color: #FBFF08FF;
     border-radius: 10px;
-    width: 30vw;
-    height: 40vh;
+    width: 30vh;
+    height: 20vh;
+}
+
+.link_homework {
+    text-decoration: none;
+    margin: auto;
+}
+
+.name_homework {
+    text-align: center;
+}
+
+@media screen and (max-height: 600px) {
+    .link_homework {
+        font-size: 80%;
+    }
 }
