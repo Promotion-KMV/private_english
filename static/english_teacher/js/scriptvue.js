@@ -140,8 +140,8 @@ const App = {
                     },
                 })
                 console.log(b)
-                b.then(data => data.text())
-                b.then(data => {
+                .then(data => data.text())
+                .then(data => {
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(datas, 'все ок');
