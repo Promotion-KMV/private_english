@@ -137,7 +137,6 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                    console.log(b)
                     .then(data => data.text())
                     .then(data => {
                         this.successFunc()
