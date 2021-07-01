@@ -155,6 +155,7 @@ const App = {
                         this.sendOneMessage = true
                     });
             }
+            
     
         },
         inputReviewName(event) {
