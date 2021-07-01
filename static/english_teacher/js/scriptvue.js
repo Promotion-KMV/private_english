@@ -138,6 +138,13 @@ const App = {
                     },
                 })
                 .then(data => data.text())
+                then((response) => {
+                    if (!response.ok) {
+
+                        throw 'Error';
+                    }
+                    return response.json()
+                })
                 .then(data => {
                     this.successFunc()
                     this.sendOneMessage = true
