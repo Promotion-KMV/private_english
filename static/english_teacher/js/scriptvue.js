@@ -137,9 +137,9 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                await console.log(b)
-                await b.then(data => data.text())
-                await b.then(data => {
+                console.log(b, 'Это и')
+                .then(data => data.text())
+                .then(data => {
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(datas, 'все ок');
