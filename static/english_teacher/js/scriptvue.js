@@ -130,22 +130,16 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
+                const b = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
-                        // 'Content-type': 'application/json'
+                        'Content-type': 'application/json'
                     },
                 })
-                // .then(data => data.text())
-                .then((response) => {
-                    if (!response.ok) {
-
-                        throw 'Error';
-                    }
-                    return response.json()
-                })
-                .then(data => {
+                console.log(b)
+                b.then(data => data.text())
+                b.then(data => {
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(datas, 'все ок');
