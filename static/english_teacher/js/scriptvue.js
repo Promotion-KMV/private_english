@@ -138,7 +138,7 @@ const App = {
                     },
                 })
                 .then(data => data.text())
-                then((response) => {
+                .then((response) => {
                     if (!response.ok) {
 
                         throw 'Error';
