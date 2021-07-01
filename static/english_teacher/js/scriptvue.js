@@ -130,13 +130,17 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
+                const b = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
                     method: "POST",
                     headers: { 
                         "X-CSRFToken": csrftoken,
                         'Content-type': 'application/json'
                     },
                 })
+                if (!b.ok) {
+                    throw new Error(b.status)
+                };
+                return b
                 .then(data => data.text())
                 .then(function(response) {
                     if (!response.ok) {
