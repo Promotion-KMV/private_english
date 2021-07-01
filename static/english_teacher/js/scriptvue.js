@@ -139,23 +139,23 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                console.log(b)
-                .then(data => data.text())
-                .then(data => {
-                    this.successFunc()
-                    this.sendOneMessage = true
-                    console.log(datas, 'все ок');
-                    this.closeAlertTime(this.successMessage)
-                }).catch(() => {
-                    this.errorFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.errorMessage)
-                    console.log('error')
-                }).finally(() => {
-                    console.log('finally')
-                    this.sendMessageForm = 'none'
-                    this.sendOneMessage = true
-                });
+                    console.log(b)
+                    .then(data => data.text())
+                    .then(data => {
+                        this.successFunc()
+                        this.sendOneMessage = true
+                        console.log(datas, 'все ок');
+                        this.closeAlertTime(this.successMessage)
+                    }).catch(() => {
+                        this.errorFunc()
+                        this.sendOneMessage = true
+                        this.closeAlertTime(this.errorMessage)
+                        console.log('error')
+                    }).finally(() => {
+                        console.log('finally')
+                        this.sendMessageForm = 'none'
+                        this.sendOneMessage = true
+                    });
             }
     
         },
