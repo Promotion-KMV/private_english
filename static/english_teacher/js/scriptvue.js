@@ -137,23 +137,12 @@ const App = {
                         'Content-type': 'application/json'
                     },
                 })
-                if (!b.ok) {
-                    throw new Error(b.status)
-                };
-                return b
                 .then(data => data.text())
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw Error(response.statusText);
-                    }
-                    else {
-                        console.log('ok')
-                    }
-                // .then(data => {
-                //     this.successFunc()
-                //     this.sendOneMessage = true
-                //     console.log(datas, 'все ок');
-                //     this.closeAlertTime(this.successMessage)
+                .then(data => {
+                    this.successFunc()
+                    this.sendOneMessage = true
+                    console.log(datas, 'все ок');
+                    this.closeAlertTime(this.successMessage)
                 }).catch(() => {
                     this.errorFunc()
                     this.sendOneMessage = true
