@@ -14,6 +14,10 @@ from .forms import *
 import datetime
 
 
+def developer(request):
+    return render(request, 'develop/developer.html')
+
+
 def books(request):
     """Страница отображения всех учебников"""
     searh_query = request.GET.get('search_books', '')
@@ -108,20 +112,10 @@ def studyhomework(request, work_id):
     homework = get_object_or_404(HomeWork, id=work_id)
     studywords = StudyWords.objects.filter(home_work=work_id)
     studyhomework = DetailHomeWork.objects.filter(homework=homework)
-    # studyaudio = StudyAudioBook.objects.all()
-    # book_url = studybook.book.url
-    # audio = StudyAudioBook.objects.all()
-    # video = VideoMaterial.objects.all()
     context = {
         'homework': homework,
         'studywords': studywords,
         'studyhomework': studyhomework,
-        # 'studybook': studybook,
-        # 'book_url': book_url,
-        # 'audio': audio,
-        # 'studyaudio': studyaudio,
-        # 'video': video,
-
     }
     return render(request, 'homework/studyhomework.html', context)
 
@@ -153,6 +147,7 @@ def send_message(request, sub, email, message):
         to=['privatenglishtutor@yandex.ru',]
     )
     email.send()
+    # logger.debug('hello!')
 
 
 def self_study_word(request):

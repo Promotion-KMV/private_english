@@ -187,7 +187,7 @@
     padding: 1vw;
 }
 .video {
-    padding-top: 30vh;
+    padding-top: 20vh;
     padding-left: 5vw;
 }
 
@@ -196,17 +196,23 @@
     max-height: 40%;
     padding-top: 20px;
     margin: 40px auto;
+    font-size: 120%;
     margin-left: 5%;
     border-radius: 10px;
     text-align: center;
     display: inline-block;
-    color: #3CF0ECFF;
+    color: #F109B2FF;
     background-color: hsla(0, 0%, 50%, 0.3);
 }
 
 .video_promotion {
     width: 40vw;
     height: 35vh;
+}
+
+.video_link {
+    font-size:140%;
+    color: red;
 }
 .line_v {
     margin-left: auto;
@@ -400,7 +406,10 @@ footer  {
         font-size: 20px;
    }
    .price {
-    height: max(70vh,600px);
+        height: max(70vh,600px);
+   }
+   .video_link {
+        color: black;
    }
 }
 

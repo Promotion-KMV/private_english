@@ -70,7 +70,6 @@ def register(request):
                 [user.email],
             )
             email.attach_alternative(html_body, "text/html")
-            # email.send()
             try:
                 email.send()
                 message = messages.success(request, message='Регистрация прошла ' +
