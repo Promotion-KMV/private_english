@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from rest_framework import generics
 from english_teacher.serializers import ReviewSerializer
 from django.utils.encoding import *
@@ -64,7 +64,8 @@ def video(request, video_id):
 def index(request):
     """Главная страница"""
     if request.user.is_authenticated or request.user.is_staff:
-        return render(request, 'main_info.html',)
+        return HttpResponseRedirect(reverse_lazy('english_teacher:main_info'))
+        # return render(request, 'main_info.html',)
 
     return render(request, 'index.html')
 
