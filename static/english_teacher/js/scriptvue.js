@@ -142,6 +142,7 @@ const App = {
             else {
                 this.sendOneMessage = false
                 this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
+
                 .then(response => response.text())
                 .then((response) => {
                     console.log(response)
@@ -149,7 +150,8 @@ const App = {
                     this.sendOneMessage = true
                     this.closeAlertTime(this.successMessage)
                 }).catch(() => {
-                    this.errorFunc()
+                    // this.errorFunc()
+                    this.errorMessage = true
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
                     console.log('error')
