@@ -140,7 +140,7 @@ const App = {
             else {
                 this.sendOneMessage = false
                 this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
-                // .then(response => response.text())
+                .then(response => response.text())
                 .then((response) => {
                     console.log(response)
                     this.successFunc()
