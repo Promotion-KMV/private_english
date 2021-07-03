@@ -117,7 +117,7 @@ const App = {
             });
         },
 
-        sendMessage() {
+        async sendMessage() {
             let csrftoken = Cookies.get('csrftoken');
             let datas = {
                 email: this.emailText,
@@ -130,7 +130,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
+                const send = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
                 // , {
                 //     method: "POST",
                 //     headers: { 
@@ -138,22 +138,27 @@ const App = {
                 //         'Content-type': 'application/json'
                 //     },
                 // })
-                .then(data => data.text())
-                .then(data => {
-                    this.successFunc()
-                    this.sendOneMessage = true
-                    console.log(datas, 'все ок');
-                    this.closeAlertTime(this.successMessage)
-                }).catch(() => {
-                    this.errorFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.errorMessage)
-                    console.log('error')
-                }).finally(() => {
-                    console.log('finally')
-                    this.sendMessageForm = 'none'
-                    this.sendOneMessage = true
-                });
+                if (send.ok) {
+                    console.log('ok')
+                } else {
+                    console.log('no ok')
+                }
+                // .then(data => data.text())
+                // .then(data => {
+                //     this.successFunc()
+                //     this.sendOneMessage = true
+                //     console.log(data, 'все ок');
+                //     this.closeAlertTime(this.successMessage)
+                // }).catch(() => {
+                //     this.errorFunc()
+                //     this.sendOneMessage = true
+                //     this.closeAlertTime(this.errorMessage)
+                //     console.log('error')
+                // }).finally(() => {
+                //     console.log('finally')
+                //     this.sendMessageForm = 'none'
+                //     this.sendOneMessage = true
+                // });
             }
             
     
