@@ -118,11 +118,11 @@ const App = {
         },
 
         async sendMessage() {
-            let csrftoken = Cookies.get('csrftoken');
-            let datas = {
-                email: this.emailText,
-                message: this.messageText,
-            }
+            // let csrftoken = Cookies.get('csrftoken');
+            // let datas = {
+            //     email: this.emailText,
+            //     message: this.messageText,
+            // }
             if ((this.emailText).length == 0 || (this.messageText).length == 0 ||
                  this.emailText == undefined || this.messageText == undefined ||
                  this.emailText.indexOf('@') == -1) {
