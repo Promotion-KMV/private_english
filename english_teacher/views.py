@@ -146,8 +146,11 @@ def send_message(request, sub, email, message):
         from_email='privatenglishtutor@yandex.ru',
         to=['privatenglishtutor@yandex.ru',]
     )
-    email.send(fail_silently=False)
-    return HttpResponseRedirect(reverse_lazy('english_teacher:main_info'))
+    try:
+        email.send(fail_silently=False)
+        return HttpResponse('Это сообщение успешно отправленно!')
+    except:
+        return HttpResponse('ошибка')
     # logger.debug('hello!')
 
 
