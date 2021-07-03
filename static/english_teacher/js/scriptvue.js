@@ -125,8 +125,6 @@ const App = {
                 console.log('error')
                 return
             }
-
-            return await send.text()
         },
 
         async sendMessage() {
@@ -144,8 +142,7 @@ const App = {
                     this.successFunc()
                     this.sendOneMessage = true
                     this.closeAlertTime(this.successMessage)
-                }).catch((response) => {
-                    console.log(response)
+                }).catch(() => {
                     this.errorFunc()
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
