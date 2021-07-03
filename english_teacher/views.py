@@ -135,18 +135,19 @@ def homework_study_words(request, word_study):
 
 
 def send_message(request, sub, email, message):
-    """Функция отправки сообщения используется из vue"""
-    if sub == 'review':
-        theme = 'Отзыв от пользователя' + ' ' +  email
-    else:
-        theme = 'Сообщение от пользователя' + ' ' +  email
-    email = EmailMessage(
-        subject=theme,
-        body=message,
-        from_email='privatenglishtutor@yandex.ru',
-        to=['privatenglishtutor@yandex.ru',]
-    )
-    email.send()
+    pass
+    # """Функция отправки сообщения используется из vue"""
+    # if sub == 'review':
+    #     theme = 'Отзыв от пользователя' + ' ' +  email
+    # else:
+    #     theme = 'Сообщение от пользователя' + ' ' +  email
+    # email = EmailMessage(
+    #     subject=theme,
+    #     body=message,
+    #     from_email='privatenglishtutor@yandex.ru',
+    #     to=['privatenglishtutor@yandex.ru',]
+    # )
+    # email.send()
     # logger.debug('hello!')
 
 
