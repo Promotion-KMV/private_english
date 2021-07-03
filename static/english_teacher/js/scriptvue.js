@@ -130,7 +130,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                const send = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
+                await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
                 // , {
                 //     method: "POST",
                 //     headers: { 
@@ -138,10 +138,10 @@ const App = {
                 //         'Content-type': 'application/json'
                 //     },
                 // })
+                .then(response => response.text())
                 .then(() => {
                     this.successFunc()
                     this.sendOneMessage = true
-                    console.log(data, 'все ок');
                     this.closeAlertTime(this.successMessage)
                 }).catch(() => {
                         this.errorFunc()
