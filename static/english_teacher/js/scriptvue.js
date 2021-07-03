@@ -128,8 +128,8 @@ const App = {
             } else {
                 console.log('ok')
                 console.log(send.statusText, 'Status Text')
+                return send
             }
-            return send        
 
         },
 
