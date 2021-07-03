@@ -137,7 +137,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                fetchSendMessage()                
+                this.fetchSendMessage()                
                 .then(response => response.text())
                 .then((response) => {
                     console.log(response)
