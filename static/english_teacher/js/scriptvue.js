@@ -141,7 +141,7 @@ const App = {
 
                 .then(response => response.text())
                 .then(() => {
-                    if(!this.errorMessage) {
+                    if(this.errorMessage) {
                         this.successFunc()
                         this.sendOneMessage = true
                         this.closeAlertTime(this.successMessage)
