@@ -148,16 +148,12 @@ const App = {
                         this.sendOneMessage = true
                         this.closeAlertTime(this.errorMessage)
                         console.log('error')
-                    }).finally(() => {
-                        console.log('finally')
-                        this.sendMessageForm = 'none'
-                        this.sendOneMessage = true
-                    });
-                if (await send.ok) {
-                    console.log('все ок');               
-                } else {
-                    console.log('error')
-                }
+                }).finally(() => {
+                    console.log('finally')
+                    this.sendMessageForm = 'none'
+                    this.sendOneMessage = true
+                });
+
                 // .then(data => data.text())
                 // .then(data => {
                 //     this.successFunc()
