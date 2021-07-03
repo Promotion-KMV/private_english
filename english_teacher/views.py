@@ -146,7 +146,7 @@ def send_message(request, sub, email, message):
         from_email='privatenglishtutor@yandex.ru',
         to=['privatenglishtutor@yandex.ru',]
     )
-    email.send()
+    email.send(fail_silently=False)
     # logger.debug('hello!')
 
 
