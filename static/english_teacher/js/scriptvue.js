@@ -126,12 +126,12 @@ const App = {
                 return
             } else {
                 console.log('ok')
-                return send
             }
+            return send
 
         },
 
-        async sendMessage() {
+        sendMessage() {
             if ((this.emailText).length == 0 || (this.messageText).length == 0 ||
                  this.emailText == undefined || this.messageText == undefined ||
                  this.emailText.indexOf('@') == -1) {
@@ -140,7 +140,7 @@ const App = {
             else {
                 this.sendOneMessage = false
                 this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
-                .then(response => response.text())
+                // .then(response => response.text())
                 .then((response) => {
                     console.log(response)
                     this.successFunc()
