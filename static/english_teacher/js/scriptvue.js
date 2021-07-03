@@ -144,7 +144,8 @@ const App = {
                     this.successFunc()
                     this.sendOneMessage = true
                     this.closeAlertTime(this.successMessage)
-                }).catch(() => {
+                }).catch((response) => {
+                    console.log(response)
                     this.errorFunc()
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
