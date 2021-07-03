@@ -146,7 +146,10 @@ def send_message(request, sub, email, message):
         from_email='privatenglishtutor@yandex.ru',
         to=['privatenglishtutor@yandex.ru',]
     )
-    email.send(fail_silently=False)
+    try:
+        email.send(fail_silently=False)
+    except:
+        return HttpResponse('ошибка')
     # logger.debug('hello!')
 
 
