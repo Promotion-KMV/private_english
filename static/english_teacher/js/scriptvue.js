@@ -139,6 +139,7 @@ const App = {
                 //     },
                 // })
                 if (send.ok) {
+                    let data = send.text()
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(data, 'все ок');
