@@ -117,7 +117,7 @@ const App = {
             });
         },
 
-        async sendMessage() {
+        sendMessage() {
             let csrftoken = Cookies.get('csrftoken');
             let datas = {
                 email: this.emailText,
@@ -130,13 +130,14 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                const b = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`, {
-                    method: "POST",
-                    headers: { 
-                        "X-CSRFToken": csrftoken,
-                        'Content-type': 'application/json'
-                    },
-                })
+                fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
+                // , {
+                //     method: "POST",
+                //     headers: { 
+                //         "X-CSRFToken": csrftoken,
+                //         'Content-type': 'application/json'
+                //     },
+                // })
                 .then(data => data.text())
                 .then(data => {
                     this.successFunc()
