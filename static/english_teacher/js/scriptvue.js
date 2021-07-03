@@ -118,11 +118,11 @@ const App = {
         },
         async fetchSendMessage(url) {
             const send = await fetch(url)
-            if (!send.ok) {
-                this.errorFunc()
+            if (send.ok) {
+                this.successFunc()
                 this.sendOneMessage = true
-                this.closeAlertTime(this.errorMessage)
-                console.log('error')
+                this.closeAlertTime(this.successMessage)
+                console.log('ok')
                 console.log(send.statusText, 'Status Text')
             } 
             return send
@@ -139,15 +139,16 @@ const App = {
                 this.sendOneMessage = false
                 this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
 
-                .then(response => response.text())
-                .then(() => {
-                    if(this.errorMessage) {
-                        this.successFunc()
-                        this.sendOneMessage = true
-                        this.closeAlertTime(this.successMessage)
-                    }
+                // .then(response => response.text())
+                // .then(() => {
+                //     if(this.errorMessage) {
+                //         this.successFunc()
+                //         this.sendOneMessage = true
+                //         this.closeAlertTime(this.successMessage)
+                //     }
 
-                }).catch(() => {
+                // })
+                .catch(() => {
                     // this.errorFunc()
                     this.errorMessage = false
                     this.sendOneMessage = true
