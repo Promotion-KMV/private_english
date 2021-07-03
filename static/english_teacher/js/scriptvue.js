@@ -128,10 +128,8 @@ const App = {
             } else {
                 console.log('ok')
                 console.log(send.statusText, 'Status Text')
-                return send
             }
-            console.log(send.statusText, 'Status Text')
-            
+            return send        
 
         },
 
@@ -151,9 +149,9 @@ const App = {
                     this.sendOneMessage = true
                     this.closeAlertTime(this.successMessage)
                 }).catch(() => {
-                    this.errorFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.errorMessage)
+                    // this.errorFunc()
+                    // this.sendOneMessage = true
+                    // this.closeAlertTime(this.errorMessage)
                     console.log('error')
                 }).finally(() => {
                     console.log('finally')
