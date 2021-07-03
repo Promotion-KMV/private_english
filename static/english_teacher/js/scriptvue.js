@@ -116,7 +116,7 @@ const App = {
 
             });
         },
-        fetchSendMessage() {
+        async fetchSendMessage() {
             const send = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
             if (!send.ok) {
                 this.errorFunc()
