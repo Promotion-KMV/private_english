@@ -146,11 +146,11 @@ def send_message(request, sub, email, message):
         from_email='privatenglishtutor@yandex.ru',
         to=['privatenglishtutor@yandex.ru',]
     )
-    try:
-        email.send(fail_silently=False)
-        return HttpResponse('Это сообщение успешно отправленно!')
-    except:
-        return HttpResponse('Сообщение не отправлено ошибка сервера')
+    # try:
+    email.send(fail_silently=False)
+    #     return HttpResponse('Это сообщение успешно отправленно!')
+    # except:
+    #     return HttpResponse('Сообщение не отправлено ошибка сервера')
     # logger.debug('hello!')
 
 
