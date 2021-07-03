@@ -123,9 +123,11 @@ const App = {
                 this.sendOneMessage = true
                 this.closeAlertTime(this.errorMessage)
                 console.log('error')
-                break
+                console.log(send.statusText, 'Status Text')
+                return
             } else {
                 console.log('ok')
+                console.log(send.statusText, 'Status Text')
                 return send
             }
             console.log(send.statusText, 'Status Text')
