@@ -148,7 +148,7 @@ def send_message(request, sub, email, message):
     )
     try:
         email.send(fail_silently=False)
-        return HttpResponse('ok')
+        return HttpResponse('Это сообщение успешно отправленно!')
     except:
         return HttpResponse('ошибка')
     # logger.debug('hello!')
