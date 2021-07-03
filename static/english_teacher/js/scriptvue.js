@@ -138,17 +138,11 @@ const App = {
                 //         'Content-type': 'application/json'
                 //     },
                 // })
-                if (!send.ok) {
-                    this.errorFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.errorMessage)
-                    console.log('error')                    
-                } else {
+                if (send.ok) {
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(data, 'все ок');
-                    this.closeAlertTime(this.successMessage)
-
+                    this.closeAlertTime(this.successMessage)                 
                 }
                 // .then(data => data.text())
                 // .then(data => {
