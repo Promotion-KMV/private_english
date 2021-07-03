@@ -143,6 +143,12 @@ const App = {
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
                     console.log('error')                    
+                } else {
+                    this.successFunc()
+                    this.sendOneMessage = true
+                    console.log(data, 'все ок');
+                    this.closeAlertTime(this.successMessage)
+
                 }
                 // .then(data => data.text())
                 // .then(data => {
