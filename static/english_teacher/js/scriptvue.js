@@ -140,11 +140,13 @@ const App = {
                 this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
 
                 .then(response => response.text())
-                .then((response) => {
-                    console.log(response)
-                    this.successFunc()
-                    this.sendOneMessage = true
-                    this.closeAlertTime(this.successMessage)
+                .then(() => {
+                    if(this.errorMessage===false) {
+                        this.successFunc()
+                        this.sendOneMessage = true
+                        this.closeAlertTime(this.successMessage)
+                    }
+
                 }).catch(() => {
                     // this.errorFunc()
                     this.errorMessage = false
