@@ -139,26 +139,30 @@ const App = {
                 //     },
                 // })
                 if (send.ok) {
-                    console.log('ok')
+                    send.then(data => data.text())
+                    send.then(data => {
+                        this.successFunc()
+                        this.sendOneMessage = true
+                        console.log(data, 'все ок');
+                        this.closeAlertTime(this.successMessage)
+                    }).catch(() => {
+                        this.errorFunc()
+                        this.sendOneMessage = true
+                        this.closeAlertTime(this.errorMessage)
+                        console.log('error')
+                    }).finally(() => {
+                        console.log('finally')
+                        this.sendMessageForm = 'none'
+                        this.sendOneMessage = true
+                    });
+                    
                 } else {
-                    console.log(send.statusText)
+                    this.errorFunc()
+                    this.sendOneMessage = true
+                    this.closeAlertTime(this.errorMessage)
+                    console.log('error')
                 }
-                // .then(data => data.text())
-                // .then(data => {
-                //     this.successFunc()
-                //     this.sendOneMessage = true
-                //     console.log(data, 'все ок');
-                //     this.closeAlertTime(this.successMessage)
-                // }).catch(() => {
-                //     this.errorFunc()
-                //     this.sendOneMessage = true
-                //     this.closeAlertTime(this.errorMessage)
-                //     console.log('error')
-                // }).finally(() => {
-                //     console.log('finally')
-                //     this.sendMessageForm = 'none'
-                //     this.sendOneMessage = true
-                // });
+
             }
             
     
