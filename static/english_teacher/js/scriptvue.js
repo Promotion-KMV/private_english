@@ -137,12 +137,9 @@ const App = {
 
                 .then(response => response.text())
                 .then(() => {
-                    if(this.errorMessage) {
-                        this.successFunc()
-                        this.sendOneMessage = true
-                        this.closeAlertTime(this.successMessage)
-                    }
-
+                    this.successFunc()
+                    this.sendOneMessage = true
+                    this.closeAlertTime(this.successMessage)
                 })
                 .catch(() => {
                     this.errorFunc()
