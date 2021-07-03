@@ -138,12 +138,25 @@ const App = {
                 //         'Content-type': 'application/json'
                 //     },
                 // })
-                if (send.ok) {
-                    let data = send.text()
+                .then(() => {
                     this.successFunc()
                     this.sendOneMessage = true
                     console.log(data, 'все ок');
-                    this.closeAlertTime(this.successMessage)                 
+                    this.closeAlertTime(this.successMessage)
+                }).catch(() => {
+                        this.errorFunc()
+                        this.sendOneMessage = true
+                        this.closeAlertTime(this.errorMessage)
+                        console.log('error')
+                    }).finally(() => {
+                        console.log('finally')
+                        this.sendMessageForm = 'none'
+                        this.sendOneMessage = true
+                    });
+                if (await send.ok) {
+                    console.log('все ок');               
+                } else {
+                    console.log('error')
                 }
                 // .then(data => data.text())
                 // .then(data => {
