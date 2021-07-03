@@ -141,7 +141,7 @@ const App = {
                 if (send.ok) {
                     console.log('ok')
                 } else {
-                    console.log('no ok')
+                    console.log(send.status)
                 }
                 // .then(data => data.text())
                 // .then(data => {
