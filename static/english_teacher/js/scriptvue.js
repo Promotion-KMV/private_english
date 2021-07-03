@@ -116,15 +116,19 @@ const App = {
 
             });
         },
-        async fetchSendMessage() {
-            const send = await fetch(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)
+        async fetchSendMessage(url) {
+            const send = await fetch(url)
             if (!send.ok) {
                 this.errorFunc()
                 this.sendOneMessage = true
                 this.closeAlertTime(this.errorMessage)
                 console.log('error')
                 return
+            } else {
+                console.log('ok')
+                return send
             }
+
         },
 
         async sendMessage() {
@@ -135,7 +139,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                this.fetchSendMessage()                
+                this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
                 .then(response => response.text())
                 .then((response) => {
                     console.log(response)
