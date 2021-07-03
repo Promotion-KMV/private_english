@@ -139,7 +139,8 @@ const App = {
                 //     },
                 // })
                 .then(response => response.text())
-                .then(() => {
+                .then((response) => {
+                    console.log(response)
                     this.successFunc()
                     this.sendOneMessage = true
                     this.closeAlertTime(this.successMessage)
