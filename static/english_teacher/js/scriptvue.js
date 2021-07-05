@@ -26,9 +26,6 @@ const App = {
         }
     },
     methods: {
-        domainTest() {
-            console.log(jsDomain)
-        },
         format_date(value){
             return moment(String(value)).format('MMMM Do YYYY, h:mm a')
         },
@@ -45,7 +42,6 @@ const App = {
             this.sendMessageForm = 'inline'
         },
         showCall() {
-            console.log('ShowReviews')
             this.isActiveCall = !this.isActiveCall
         },
         showMessage() {
@@ -91,30 +87,30 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
-                method: "POST",
-                headers: { 
-                    "X-CSRFToken": csrftoken,
-                    'Content-type': 'application/json'
-                },
-            })
-                .then(data => data.text())
-                .then(data => {
-                    this.sendRewiew = true
-                    this.successReviewFunc()
-                    this.closeAlertTime(this.successMessageReview)
+            fetchSendMessage(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`)
+            // fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
+            //     method: "POST",
+            //     headers: { 
+            //         "X-CSRFToken": csrftoken,
+            //         'Content-type': 'application/json'
+            //     },
+            // })
+            .then(data => data.text())
+            .then(data => {
+                this.sendRewiew = true
+                this.successReviewFunc()
+                this.closeAlertTime(this.successMessageReview)
 
-                }).catch(() => {
-                    this.errorFuncReview()
-                    this.closeAlertTime(this.errorMessageReview)
-                    this.sendRewiew = true
+            }).catch(() => {
+                this.errorFuncReview()
+                this.closeAlertTime(this.errorMessageReview)
+                this.sendRewiew = true
 
 
-                }).finally(() => {
-                    this.sendRewiew = true
-                    console.log(jsDomain)
-                    this.nameReview = ''
-                    this.textReview = ''
+            }).finally(() => {
+                this.sendRewiew = true
+                this.nameReview = ''
+                this.textReview = ''
 
             });
         },
@@ -148,7 +144,6 @@ const App = {
                     // this.errorMessage = false
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
-                    console.log('error')
                 }).finally(() => {
                     console.log('finally')
                     this.sendMessageForm = 'none'
