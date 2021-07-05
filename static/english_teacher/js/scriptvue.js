@@ -1,3 +1,5 @@
+import fetchSendMessage from './api';
+
 let jsDomain = JSON.parse(document.getElementById('domain-test').textContent);
 const App = {
     
@@ -116,14 +118,14 @@ const App = {
 
             });
         },
-        async fetchSendMessage(url) {
-            const send = await fetch(url)
-            if (!send.ok) {
-               throw new Error(`Ваш запрос не выполнен.Ошибка сервера.попробуйте повторить запрос`)
-            } 
-            return send
+        // async fetchSendMessage(url) {
+        //     const send = await fetch(url)
+        //     if (!send.ok) {
+        //        throw new Error(`Ваш запрос не выполнен.Ошибка сервера.попробуйте повторить запрос`)
+        //     } 
+        //     return send
 
-        },
+        // },
 
         sendMessage() {
             if ((this.emailText).length == 0 || (this.messageText).length == 0 ||
@@ -133,7 +135,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
+                fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
 
                 .then(response => response.text())
                 .then(() => {
@@ -152,26 +154,6 @@ const App = {
                     this.sendMessageForm = 'none'
                     this.sendOneMessage = true
                 });
-
-                // .then(data => data.text())
-                // .then(data => {
-                //     this.successFunc()
-                //     this.sendOneMessage = true
-                //     console.log(data, 'все ок');
-                //     this.closeAlertTime(this.successMessage)
-                // }).catch(() => {
-                //     this.errorFunc()
-                //     this.sendOneMessage = true
-                //     this.closeAlertTime(this.errorMessage)
-                //     console.log('error')
-                // }).finally(() => {
-                //     console.log('finally')
-                //     this.sendMessageForm = 'none'
-                //     this.sendOneMessage = true
-                // });
-
-
-
             }
             
     
