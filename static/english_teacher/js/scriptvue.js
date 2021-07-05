@@ -1,10 +1,9 @@
-import fetchSendMessage from './api';
+import fetchSendMessage from './api.js';
 let jsDomain = JSON.parse(document.getElementById('domain-test').textContent);
 const App = {
 
     data() {
         return {
-            fetchSendMessage,
             jsDomain,
             nameReview: '',
             textReview: '',
@@ -135,7 +134,7 @@ const App = {
             }
             else {
                 this.sendOneMessage = false
-                this.fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
+                fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${this.emailText}/${this.messageText}`)                
 
                 .then(response => response.text())
                 .then(() => {
