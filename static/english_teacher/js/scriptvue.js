@@ -50,13 +50,13 @@ const App = {
         showMessage() {
             this.isActiveMessage = !this.isActiveMessage
         },
-        getReviews() {
-            const vm = this;
-            axios.get(`https://privatenglishtutor.ru/api/review`)
-            .then(function(response){
-                vm.reviews = response.data
-            });
-        },
+        // getReviews() {
+        //     const vm = this;
+        //     axios.get(`https://privatenglishtutor.ru/api/review`)
+        //     .then(function(response){
+        //         vm.reviews = response.data
+        //     });
+        // },
         successFunc() {
             this.successMessage = !this.successMessage
         },
@@ -90,30 +90,24 @@ const App = {
                 email: this.nameReview,
                 message: this.textReview
             }
-            fetch(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`, {
-                method: "POST",
-                headers: { 
-                    "X-CSRFToken": csrftoken,
-                    'Content-type': 'application/json'
-                },
-            })
-                .then(data => data.text())
-                .then(data => {
-                    this.sendRewiew = true
-                    this.successReviewFunc()
-                    this.closeAlertTime(this.successMessageReview)
+            fetchSendMessage(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`)
+            .then(data => data.text())
+            .then(data => {
+                this.sendRewiew = true
+                this.successReviewFunc()
+                this.closeAlertTime(this.successMessageReview)
 
-                }).catch(() => {
-                    this.errorFuncReview()
-                    this.closeAlertTime(this.errorMessageReview)
-                    this.sendRewiew = true
+            }).catch(() => {
+                this.errorFuncReview()
+                this.closeAlertTime(this.errorMessageReview)
+                this.sendRewiew = true
 
 
-                }).finally(() => {
-                    this.sendRewiew = true
-                    console.log(jsDomain)
-                    this.nameReview = ''
-                    this.textReview = ''
+            }).finally(() => {
+                this.sendRewiew = true
+                console.log(jsDomain)
+                this.nameReview = ''
+                this.textReview = ''
 
             });
         },
