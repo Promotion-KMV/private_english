@@ -50,16 +50,18 @@ const App = {
         showMessage() {
             this.isActiveMessage = !this.isActiveMessage
         },
-        // getReviews() {
-        //     const vm = this;
-        //     axios.get(`https://privatenglishtutor.ru/api/review`)
-        //     .then(function(response){
-        //         vm.reviews = response.data
-        //     });
-        // },
+        getReviews() {
+            const vm = this;
+            axios.get(`https://privatenglishtutor.ru/api/review`)
+            .then(function(response){
+                vm.reviews = response.data
+            });
+        },
+
         successFunc() {
             this.successMessage = !this.successMessage
         },
+        
         errorFunc() {
             this.errorMessage = !this.errorMessage
             this.sendMessageForm = 'none'
