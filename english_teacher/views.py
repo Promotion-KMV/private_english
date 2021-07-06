@@ -137,9 +137,11 @@ def homework_study_words(request, word_study):
 def send_message(request, sub, email, message):
     """Функция отправки сообщения используется из vue"""
     if sub == 'review':
-        theme = 'Отзыв от пользователя' + ' ' +  email
+        theme = 'Отзыв от пользователя ' + ' ' +  email
+    elif sub == 'message':
+        theme = 'Сообщение от пользователя ' + ' ' +  email
     else:
-        theme = 'Сообщение от пользователя' + ' ' +  email
+        theme = 'Сообщение для разработчика от ' + ' ' +  email
     email = EmailMessage(
         subject=theme,
         body=message,
