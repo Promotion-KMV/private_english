@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.forms import formset_factory
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from .models import *
 from .forms import *
@@ -22,26 +23,26 @@ def books(request):
     """Страница отображения всех учебников"""
     searh_query = request.GET.get('search_books', '')
     if searh_query:
-        books = StudyBooks.objects.filter(name__icontains=searh_query)
+        show_all_books = StudyBooks.objects.filter(name__icontains=searh_query)
     else:
-        books = StudyBooks.objects.all()
+        show_all_books = StudyBooks.objects.all()
     context = {
-        'books': books,
+        'books': show_all_books,
     }
     return render(request, 'books_all.html', context)
 
 
 def book(request, book_id):
     """Страница отображения учебника с аудио()если есть"""
-    book = get_object_or_404(StudyBooks, id=book_id)
+    view_book = get_object_or_404(StudyBooks, id=book_id)
     searh_query = request.GET.get('search_audio', '')
     if searh_query:
-        all_audio = StudyAudioBook.objects.filter(key=book_id, name__icontains=searh_query)
+        show_all_audio = StudyAudioBook.objects.filter(key=book_id, name__icontains=searh_query)
     else:
-        all_audio = StudyAudioBook.objects.filter(key=book_id)
+        show_all_audio = StudyAudioBook.objects.filter(key=book_id)
     context = {
-        'all_audio': all_audio,
-        'book': book,
+        'all_audio': show_all_audio,
+        'book': view_book,
     }
     return render(request, 'book.html', context)
 
@@ -49,18 +50,18 @@ def book(request, book_id):
 @login_required
 def video_all(request):
     """Страница отражения всех видеолекций"""
-    all_video = VideoMaterial.objects.all().order_by('name')
+    show_all_video = VideoMaterial.objects.all().order_by('name')
     context = {
-        'all_video': all_video,
+        'all_video': show_all_video,
     }
     return render(request, 'video_all.html', context)
 
 @login_required
 def video(request, video_id):
     """Страница отражения выбранной видеолекции"""
-    video = get_object_or_404(VideoMaterial, id=video_id)
+    view_video = get_object_or_404(VideoMaterial, id=video_id)
     context = {
-        'video': video
+        'video': view_video
     }
     return render(request, 'video.html', context)
 
@@ -69,15 +70,13 @@ def index(request):
     """Главная страница"""
     if request.user.is_authenticated or request.user.is_staff:
         return HttpResponseRedirect(reverse_lazy('english_teacher:main_info'))
-        # return render(request, 'main_info.html',)
 
     return render(request, 'index.html')
 
 
-def main_info(request):
+def main_page(request):
     '''Главная страница зарегестрированного пользователя'''
-    homework = HomeWork.objects.filter(custom_user=request.user).last()
-    # date = datetime.datetime.now()
+    date_next_lesson = HomeWork.objects.filter(custom_user=request.user).only("date_next_exercise").last()
     date = datetime.datetime.today()
     url_user = ''
     url = ModelUrlText.objects.filter(name_user=request.user).last()
@@ -87,47 +86,47 @@ def main_info(request):
         if date.timestamp() - url.date_url_create.timestamp() < 1800:
             url_user = ModelUrlText.objects.filter(name_user=request.user).last()
 
-    all_ecxercise = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
+    all_exercises_for_teacher = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
     context = {
         'url_user': url_user,
-        'homework': homework,
+        'date_next_lesson': date_next_lesson,
         'date': date,
-        'all_exercise': all_ecxercise
+        'all_exercises': all_exercises_for_teacher
     }
     return render(request, 'main_info.html', context)
 
 
 def homework(request, user_id):
     '''Выбор домашнего задания ученика'''
-    homework = HomeWork.objects.filter(custom_user=request.user)[:5]
+    show_homework_pupil = HomeWork.objects.filter(custom_user=request.user)[:5]
     
     context = {
-        'homework': homework,
+        'homework': show_homework_pupil,
     }
     return render(request, 'homework/homework.html', context)
 
 @login_required
-def studyhomework(request, work_id):
+def study_home_work(request, work_id):
     '''Домашнее задание'''
-    homework = get_object_or_404(HomeWork, id=work_id)
-    studywords = StudyWords.objects.filter(home_work=work_id)
-    studyhomework = DetailHomeWork.objects.filter(homework=homework)
+    view_homework = get_object_or_404(HomeWork, id=work_id)
+    study_words = StudyWords.objects.filter(home_work=work_id)
+    study_homework = DetailHomeWork.objects.filter(homework=view_homework)
     context = {
-        'homework': homework,
-        'studywords': studywords,
-        'studyhomework': studyhomework,
+        'homework': view_homework,
+        'studywords': study_words,
+        'studyhomework': study_homework,
     }
     return render(request, 'homework/studyhomework.html', context)
 
 
 def homework_study_words(request, word_study):
     '''Изучение слов заданных преподавателем'''
-    studywords = StudyWords.objects.filter(home_work=word_study)
+    study_words = StudyWords.objects.filter(home_work=word_study)
     dict_words = {}
-    for word in studywords:
+    for word in study_words:
         dict_words[word.english_word] = word.rus_word 
     context = {
-        'studywords': studywords,
+        'studywords': study_words,
         'dict_words': dict_words,
 
     }
@@ -137,16 +136,16 @@ def homework_study_words(request, word_study):
 def send_message(request, sub, email, message):
     """Функция отправки сообщения используется из vue"""
     if sub == 'review':
-        theme = 'Отзыв от пользователя ' + ' ' +  email
+        theme = f'Отзыв от пользователя {email}'
     elif sub == 'message':
-        theme = 'Сообщение от пользователя ' + ' ' +  email
+        theme = f'Сообщение от пользователя {email}'
     else:
-        theme = 'Сообщение для разработчика от ' + ' ' +  email
+        theme = f'Сообщение для разработчика от {email}'
     email = EmailMessage(
         subject=theme,
         body=message,
-        from_email='privatenglishtutor@yandex.ru',
-        to=['privatenglishtutor@yandex.ru',]
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[settings.DEFAULT_FROM_EMAIL,]
     )
     try:
         email.send(fail_silently=False)

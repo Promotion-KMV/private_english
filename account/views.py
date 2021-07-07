@@ -3,7 +3,8 @@ from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.http import response, HttpResponse, HttpResponseRedirect
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, \
+    PasswordResetCompleteView
 from django.contrib.auth.forms import SetPasswordForm
 
 from django.contrib.auth import authenticate, login
@@ -18,7 +19,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_generator, delete_user_is_not_activate
 from django.template.loader import render_to_string
 from english.settings import *
-from smtplib import  SMTPAuthenticationError
+from smtplib import SMTPAuthenticationError
 
 
 def register(request):
@@ -30,9 +31,9 @@ def register(request):
         password2 = request.POST.get('password2')
         age = int(request.POST.get('age'))
         if CustomUser.objects.filter(email=request.POST.get('email')).exists() or \
-            CustomUser.objects.filter(email__iexact=request.POST.get('email')):
-            messages.error(request, message='Пользователь с таким адресом' + 
-                            ' электронной почты уже существует')
+                CustomUser.objects.filter(email__iexact=request.POST.get('email')):
+            messages.error(request, message='Пользователь с таким адресом' +
+                                            ' электронной почты уже существует')
             form = RegisterForm()
             return render(request, 'register/register.html', {'form': form})
         if password1 != password2:
@@ -42,11 +43,11 @@ def register(request):
         if len(password1) < 8:
             messages.error(request, message='слишком короткий пароль минимум 8 символов')
             form = RegisterForm()
-            return render(request, 'register/register.html', {'form': form}) 
+            return render(request, 'register/register.html', {'form': form})
         if 100 < age > 1:
             messages.error(request, message='Вы указали невозможный возраст')
             form = RegisterForm()
-            return render(request, 'register/register.html', {'form': form})      
+            return render(request, 'register/register.html', {'form': form})
         if form.is_valid():
             email = form.cleaned_data['email'].lower()
             user = form.save()
@@ -55,9 +56,9 @@ def register(request):
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             domain = get_current_site(request).domain
             link = reverse('account:activate', kwargs={
-                                    'uidb64': uidb64,
-                                    'token': token_generator.make_token(user)})
-            activate_url = 'https://privatenglishtutor.ru'+link
+                'uidb64': uidb64,
+                'token': token_generator.make_token(user)})
+            activate_url = 'https://privatenglishtutor.ru' + link
             data = {
                 'activate_url': activate_url,
             }
@@ -72,9 +73,11 @@ def register(request):
             email.attach_alternative(html_body, "text/html")
             try:
                 email.send()
-                message = messages.success(request, message='Регистрация прошла ' +
-                'успешно. Для активации аккаунта пройдите по ссылке отправленной на' + 
-                ' указанную вами почту.В случе отсутствия письма проверьте папку спан.')
+                message = messages.success(request, message='Регистрация прошла '
+                                                            'успешно. Для активации аккаунта пройдите по ссылке '
+                                                            'отправленной на'
+                                                            'указанную вами почту.В случе отсутствия письма проверьте '
+                                                            'папку спан.')
                 return HttpResponseRedirect(reverse_lazy('account:login', message))
             except SMTPAuthenticationError:
                 print('error')
@@ -102,18 +105,18 @@ class ResetPasswordView(PasswordResetView):
     def dispatch(self, request, *args, **kwargs):
         if request.method == 'POST':
             if CustomUser.objects.filter(email=request.POST.get('email')).exists() and \
-                CustomUser.objects.get(email__iexact=request.POST.get('email')).is_active == True:
+                    CustomUser.objects.get(email__iexact=request.POST.get('email')).is_active == True:
                 return super().dispatch(request, *args, **kwargs)
             elif CustomUser.objects.filter(email=request.POST.get('email')).exists() and \
-                CustomUser.objects.get(email__iexact=request.POST.get('email')).is_active == False:
+                    CustomUser.objects.get(email__iexact=request.POST.get('email')).is_active == False:
                 user = CustomUser.objects.get(email__iexact=request.POST.get('email'))
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
                 domain = get_current_site(request).domain
                 user_profile = CustomUser()
                 link = reverse('account:activate', kwargs={
-                                        'uidb64': uidb64,
-                                        'token': token_generator.make_token(user)})
-                activate_url = 'https://privatenglishtutor.ru'+link
+                    'uidb64': uidb64,
+                    'token': token_generator.make_token(user)})
+                activate_url = 'https://privatenglishtutor.ru' + link
                 data = {
                     'activate_url': activate_url,
                 }
@@ -128,13 +131,14 @@ class ResetPasswordView(PasswordResetView):
                 email.attach_alternative(html_body, "text/html")
                 email.send()
                 message = messages.success(request, message='Ваш адрес электронной почты' +
-                ' не был активирован.Для активации вашего аккаунта пройдите по ссылке отправленной' + 
-                ' на указанную вами почту.')
+                                                            'не был активирован.Для активации вашего аккаунта '
+                                                            'пройдите по ссылке отправленной' +
+                                                            ' на указанную вами почту.')
                 return HttpResponseRedirect(reverse_lazy('account:login', message))
             else:
                 message = messages.error(request, message='Вы пытались отправить ' +
-                'сообщение на незарегестрированный адрес электронной почты.' + 
-                'Пройдите регистрацию или введите зарегестрированный адрес.')
+                                                          'сообщение на незарегестрированный адрес электронной почты.' +
+                                                          'Пройдите регистрацию или введите зарегестрированный адрес.')
                 return HttpResponseRedirect(reverse_lazy('account:login', message))
         return super().dispatch(request, *args, **kwargs)
 
@@ -157,6 +161,7 @@ class ResetPasswordCompleteView(PasswordResetCompleteView):
 
 class VerificationView(View):
     """Отправка токена"""
+
     def get(self, request, uidb64, token):
         try:
             id = force_text(urlsafe_base64_decode(uidb64))

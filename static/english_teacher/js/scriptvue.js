@@ -25,9 +25,6 @@ const App = {
         }
     },
     methods: {
-        domainTest() {
-            console.log(jsDomain)
-        },
         format_date(value){
             return moment(String(value)).format('MMMM Do YYYY, h:mm a')
         },
@@ -44,7 +41,6 @@ const App = {
             this.sendMessageForm = 'inline'
         },
         showCall() {
-            console.log('ShowReviews')
             this.isActiveCall = !this.isActiveCall
         },
         showMessage() {
@@ -107,7 +103,6 @@ const App = {
 
             }).finally(() => {
                 this.sendRewiew = true
-                console.log(jsDomain)
                 this.nameReview = ''
                 this.textReview = ''
 
@@ -135,11 +130,12 @@ const App = {
                     // this.errorMessage = false
                     this.sendOneMessage = true
                     this.closeAlertTime(this.errorMessage)
-                    console.log('error')
                 }).finally(() => {
-                    console.log('finally')
+                    this.emailText = ''
+                    this.messageText = ''
                     this.sendMessageForm = 'none'
                     this.sendOneMessage = true
+
                 });
             }
             
