@@ -21,7 +21,7 @@
         </div>
         <div>
         {% for bh in book_homework %}        
-            <h2 class="p-3">Учебник.<a style='text-decoration: none;' target="_blank" href="{{ bh.book_name.book.url }}">{{ bh.book_name }}</a></h2>
+            <h2 class="p-3">Учебник.<a style='text-decoration: none;' target="_blank" href="{{ bh.book_name.book.url }}">{{ bh.book_name }}(Нажми чтобы открыть)</a></h2>
             <h3 style="display: inline-block; padding: 1%; border-radius: 10px; background-color: hsla(0, 0%, 50%, 0.3);">{{ bh.review }}</h3>
         {% endfor %}
         </div>
