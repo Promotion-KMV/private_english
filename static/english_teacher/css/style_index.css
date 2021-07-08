@@ -348,6 +348,10 @@ footer  {
     color: #fff;
 }
 
+.link_udemy_course {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 1050px){
     .nav_me {
         padding: 10px;
@@ -410,6 +414,10 @@ footer  {
    }
    .video_link {
         color: black;
+   }
+   .link_udemy_course {
+        text-decoration: none;
+        color: #FFFFFFFF;
    }
 }
 

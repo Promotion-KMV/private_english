@@ -21,8 +21,8 @@
     {% elif user.is_superuser or user.is_staff %}
     <div style='margin-left: 10px;'>
         <h3>Запланированные занятия:</h3>
-        {% for ecxercise in all_exercises %}
-            <p><span>{{forloop.counter}}.</span>{{ ecxercise.custom_user }} - {{ ecxercise.date_next_exercise }}</p>
+        {% for exercise in all_exercises %}
+            <p><span>{{forloop.counter}}.</span>{{ exercise.custom_user }} - {{ exercise.date_next_exercise }}</p>
         {% endfor %}
     </div>
     {% else %}

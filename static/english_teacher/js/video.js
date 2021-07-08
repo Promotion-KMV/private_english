@@ -18,7 +18,6 @@ function play() {
 
 function pause() {
     video.pause();
-    console.log(video.currentTime)
 }
 
 function speedUp() {
