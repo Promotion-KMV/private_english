@@ -48,11 +48,11 @@ const App = {
             this.isActiveCall = !this.isActiveCall
         },
         showMessage() {
-           this.isActiveMessage = !this.isActiveMessage
+            this.isActiveMessage = !this.isActiveMessage
         },
-        async getReviews() {
+        getReviews() {
             const vm = this;
-            await axios.get(`https://privatenglishtutor.ru/api/review`)
+            axios.get(`https://privatenglishtutor.ru/api/review`)
             .then(function(response){
                 vm.reviews = response.data
             });
@@ -61,7 +61,7 @@ const App = {
         successFunc() {
             this.successMessage = !this.successMessage
         },
-
+        
         errorFunc() {
             this.errorMessage = !this.errorMessage
             this.sendMessageForm = 'none'
@@ -86,12 +86,12 @@ const App = {
             } 
         },
         addReview() {
-            // this.sendRewiew = false
-            // let csrftoken = Cookies.get('csrftoken');
-            // let datas = {
-            //     email: this.nameReview,
-            //     message: this.textReview
-            // }
+            this.sendRewiew = false
+            let csrftoken = Cookies.get('csrftoken');
+            let datas = {
+                email: this.nameReview,
+                message: this.textReview
+            }
             fetchSendMessage(`https://privatenglishtutor.ru/send_message/review/${this.nameReview}/${this.textReview}`)
             .then(data => data.text())
             .then(data => {
@@ -113,6 +113,14 @@ const App = {
 
             });
         },
+        // async fetchSendMessage(url) {
+        //     const send = await fetch(url)
+        //     if (!send.ok) {
+        //        throw new Error(`Ваш запрос не выполнен.Ошибка сервера.попробуйте повторить запрос`)
+        //     } 
+        //     return send
+
+        // },
 
         sendMessage() {
             if ((this.emailText).length == 0 || (this.messageText).length == 0 ||

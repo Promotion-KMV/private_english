@@ -2859,7 +2859,7 @@ h6 {
     cursor: pointer; }
     @media (max-width: 767px) {
       .subscription_box .primary-btn {
-        margin-top: 10px; } }
+        margin-top: 20px; } }
   .subscription_box .subcribe-form {
     margin-top: 45px; }
 
@@ -3308,41 +3308,6 @@ h6 {
       margin-bottom: 0; }
     .footer_area .footer_bottom a {
       color: #854fee; }
-
-.form-email {
-  padding: 0px 20vw;
-}
-.alert-my-style {
-  position: absolute;
-  left: 15%;
-  text-align: center;
-  z-index: 100;
-  width: 70%;
-  margin: auto;
-}
-
-#alertSuccessId {
-  display: none;
-}
-
-#alertMistakeId{
-  display: none;
-}
-.mail-btn .fly {
-  z-index: 1000;
-}
-
-@media (max-width: 600px) {
-  .form-email {
-    padding: 0px 5vw;
-  }
-}
-@media (max-width: 600px) {
-  .alert-my-style {
-    max-width: 99%;
-  }
-}
-
 
 /* End Footer Area css
 ============================================================================================ */
