@@ -44,16 +44,13 @@ btnSendLetter.addEventListener('click', ()=> {
     alert('Ваше сообщение не может быть отправлено.Проверьте заполненные вами данные')
     }else {
         funpreloaderShow();
-        fetchSendMessage(`https://privatenglishtutor.ru/send_message/message_for_developer/${inputEmail.value}/${inputLetter.value}`)
+        fetchSendMessage(`https://privatenglishtutor.ru/send_message/message/${inputEmail.value}/${inputLetter.value}`)
         .then(() => {
             funpreloaderFade();
             funSuccess();            
         }).catch(() => {
             funpreloaderFade();
             funMistake();
-        }).finally(() => {
-            inputEmail.value = '';
-            inputLetter.value = '';
         })
     }
 });
