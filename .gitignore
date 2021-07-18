@@ -6,3 +6,4 @@ migrations/
 gunicorn*
 gunicorn_config.py
 settings.py
+venv/
