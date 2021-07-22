@@ -1,11 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
+from django.db import models
 from django.urls import reverse
-# from datetime import date
-import datetime
-from sorl.thumbnail import ImageField
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from .managers import CustomUserManager
 
 
@@ -113,7 +110,6 @@ class HomeWork(models.Model):
 class StudyAudioBook(models.Model):
     """Модель для аудиофайлов"""
     key = models.ForeignKey(StudyBooks, on_delete=models.CASCADE, null=True, blank=True, related_name='audio_book')
-    # name_book = key
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to=f'books/{key}/', null=True, blank=True)
 

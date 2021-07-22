@@ -17,4 +17,4 @@ def delete_user_is_not_activate():
     for i in user:
         if (datetime.datetime.now().timestamp() - i.date_joined.timestamp()) > 10800:
             i.delete()
-            print('Удален пользователь')
+

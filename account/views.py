@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
@@ -11,7 +11,6 @@ from django.contrib.auth import authenticate, login
 from account.forms import *
 
 from django.core.mail import EmailMultiAlternatives
-# from english.settings import * #1
 from django.views import View
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -49,19 +48,19 @@ def register(request):
             form = RegisterForm()
             return render(request, 'register/register.html', {'form': form})
         if form.is_valid():
-            email = form.cleaned_data['email'].lower()
+            # email = form.cleaned_data['email'].lower()
             user = form.save()
             user.is_active = False
             user.save()
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-            domain = get_current_site(request).domain
+            # domain = get_current_site(request).domain
             link = reverse('account:activate', kwargs={
                 'uidb64': uidb64,
                 'token': token_generator.make_token(user)})
             activate_url = 'https://privatenglishtutor.ru' + link
-            data = {
-                'activate_url': activate_url,
-            }
+            # data = {
+            #     'activate_url': activate_url,
+            # }
             html_body = render_to_string('email/email_body.html', {'activate_url': activate_url})
             email_subject = 'Активация аккаунта'
             email = EmailMultiAlternatives(
@@ -80,18 +79,16 @@ def register(request):
                                                             'папку спан.')
                 return HttpResponseRedirect(reverse_lazy('account:login', message))
             except SMTPAuthenticationError:
-                print('error')
                 message = messages.error(request, message='Ошибка сервера обратитесь к преподавателю')
                 return HttpResponseRedirect(reverse_lazy('account:login', message))
-            else:
-                message = messages.error(request, message='Ошибка сервера обратитесь к преподавателю')
-                return HttpResponseRedirect(reverse_lazy('account:login', message))
+        else:
+            message = messages.error(request, message='Ошибка сервера обратитесь к преподавателю')
+            return HttpResponseRedirect(reverse_lazy('account:login', message))
 
     else:
         form = RegisterForm()
-        context = {'form': form}
+        # context = {'form': form}
         return render(request, 'register/register.html', {'form': form})
-    return render(request, 'register/register.html', {'form': form})
 
 
 class ResetPasswordView(PasswordResetView):
@@ -111,15 +108,15 @@ class ResetPasswordView(PasswordResetView):
                     CustomUser.objects.get(email__iexact=request.POST.get('email')).is_active == False:
                 user = CustomUser.objects.get(email__iexact=request.POST.get('email'))
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-                domain = get_current_site(request).domain
-                user_profile = CustomUser()
+                # domain = get_current_site(request).domain
+                # user_profile = CustomUser()
                 link = reverse('account:activate', kwargs={
                     'uidb64': uidb64,
                     'token': token_generator.make_token(user)})
                 activate_url = 'https://privatenglishtutor.ru' + link
-                data = {
-                    'activate_url': activate_url,
-                }
+                # data = {
+                #     'activate_url': activate_url,
+                # }
                 html_body = render_to_string('email/email_body.html', {'activate_url': activate_url})
                 email_subject = 'Активация аккаунта'
                 email = EmailMultiAlternatives(
