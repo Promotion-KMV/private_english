@@ -10,8 +10,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 
-from django.core.mail import EmailMultiAlternatives #1
-from english.settings import * #1
+from django.core.mail import EmailMultiAlternatives
+from english.settings import *
 from django.views import View
 from django.template.loader import render_to_string
 
@@ -80,7 +80,7 @@ class LoginForm(forms.Form):
 class BootstrapStylesMixin:
     field_names = None
 
-    def __init__ (self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         if self.field_names:

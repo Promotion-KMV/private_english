@@ -7,3 +7,5 @@ gunicorn*
 gunicorn_config.py
 settings.py
 venv/
+chromedriver
+geckodriver
