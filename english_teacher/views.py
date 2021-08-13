@@ -75,7 +75,9 @@ def index(request):
 
 
 def main_info(request):
-    '''Главная страница зарегестрированного пользователя'''
+
+    """ Главная страница зарегестрированного пользователя """
+
     homework = HomeWork.objects.filter(custom_user=request.user).last()
     # date = datetime.datetime.now()
     date = datetime.datetime.today()
@@ -98,7 +100,7 @@ def main_info(request):
 
 
 def homework(request, user_id):
-    '''Выбор домашнего задания ученика'''
+    """Выбор домашнего задания ученика"""
     homework = HomeWork.objects.filter(custom_user=request.user)[:5]
     
     context = {
@@ -108,7 +110,7 @@ def homework(request, user_id):
 
 @login_required
 def studyhomework(request, work_id):
-    '''Домашнее задание'''
+    """Домашнее задание"""
     homework = get_object_or_404(HomeWork, id=work_id)
     studywords = StudyWords.objects.filter(home_work=work_id)
     studyhomework = DetailHomeWork.objects.filter(homework=homework)
@@ -121,7 +123,7 @@ def studyhomework(request, work_id):
 
 
 def homework_study_words(request, word_study):
-    '''Изучение слов заданных преподавателем'''
+    """Изучение слов заданных преподавателем"""
     studywords = StudyWords.objects.filter(home_work=word_study)
     dict_words = {}
     for word in studywords:
@@ -155,7 +157,7 @@ def send_message(request, sub, email, message):
 
 
 def self_study_word(request):
-    ''' Добавление слов для самостоятельного изучения'''
+    """ Добавление слов для самостоятельного изучения"""
     user_name = request.user.id
     StudyWords = formset_factory(StydyWordForm, extra=10)
     SelfStudyWordNameView = formset_factory(StydyWordNameForm, extra=1)
@@ -189,7 +191,7 @@ def self_study_word(request):
 
 
 def list_study_word(request):
-    '''Выбор словаря для повторного изучения'''
+    """Выбор словаря для повторного изучения"""
     search_query_start = request.GET.get('search_date_start', '')
     search_query_end = request.GET.get('search_date_end', '')
     if search_query_start and search_query_end:
@@ -211,7 +213,7 @@ def list_study_word(request):
 
 
 def self_study_words(request, word_study):
-    '''Непосредственно изучение слов организуется через vue'''
+    """Непосредственно изучение слов организуется через vue"""
     study_word_name = get_object_or_404(SelfStudyWordName, id=word_study)
     study_words = study_word_name.study_word_name.all()
     dict_words = {}
