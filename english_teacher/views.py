@@ -69,7 +69,6 @@ def index(request):
     """Главная страница"""
     if request.user.is_authenticated or request.user.is_staff:
         return HttpResponseRedirect(reverse_lazy('english_teacher:main_info'))
-        # return render(request, 'main_info.html',)
 
     return render(request, 'index.html')
 
