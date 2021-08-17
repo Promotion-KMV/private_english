@@ -18,13 +18,32 @@
     {% endfor %}
     <div class="p-2">
     {% if studywords %}
-            <h6>Вам необходимо выучить следующие слова </h6>
-            <p>(
-        {% for s in studywords %}
-                {{s.english_word}} - {{ s.rus_word }},
-        {% endfor %}
-            )</p>
-        <button type="button" class="btn btn-warning"><a style='text-decoration: none;' href="{% url 'english_teacher:studywords' homework.id %}">Учить слова</a></button>    
+            <h4>Вам необходимо выучить следующие слова </h4>
+            <table class="table table-striped" style="width: auto; margin: auto;">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Слово на английском</th>
+                  <th scope="col">Перевод</th>
+                </tr>
+              </thead>
+              {% for s in studywords %}
+              <tbody>
+                <tr>
+                  <th scope="row"> {{ forloop.counter }} </th>
+                  <td>{{s.english_word}}</td>
+                  <td>{{ s.rus_word }}</td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+
+<!--            <p>(-->
+<!--        {% for s in studywords %}-->
+<!--                {{s.english_word}} - {{ s.rus_word }},-->
+<!--        {% endfor %}-->
+<!--            )</p>-->
+        <a style='text-decoration: none;' href="{% url 'english_teacher:studywords' homework.id %}"><button type="button" class="btn btn-warning w-25 m-3">Учить слова</button></a>
     {% endif %}
     </div>
 </div>
