@@ -10,3 +10,4 @@ venv/
 chromedriver
 geckodriver
 *.log
+venv/
