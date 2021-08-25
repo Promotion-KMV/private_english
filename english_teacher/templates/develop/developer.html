@@ -13,10 +13,10 @@
 
     <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_72101.ico" type="image/x-icon" />
 
-    <title>Portfolio</title>
-
-        <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_72101.ico" type="image/x-icon" />
-    <title>Satner Portfolio</title>
+    <link rel="shortcut icon" href="https://faviconka.ru/ico/2/faviconka.ru_2_72101.ico" type="image/x-icon" />
+    <title>My Portfolio</title>
+    <!-- button send email -->
+    <link rel="stylesheet" href="{% static 'develop/css/style_button.css' %}" type="text/css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'develop/css/bootstrap.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'develop/vendors/linericon/style.css' %}" type="text/css">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{% static 'develop/vendors/nice-select/css/nice-select.css' %}" type="text/css">
         <!-- main css -->
     <link rel="stylesheet" href="{% static 'develop/css/style.css' %}" type="text/css">
+
 </head>
 
 <body>
@@ -388,19 +389,20 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12">
                     <div class="subscription_box text-center">
-                        <h2 class="text-uppercase text-white">get update from anywhere</h2>
-                        <p class="text-white">
-                            Bearing Void gathering light light his eavening unto dont afraid. 
-                        </p>
+                        <h2 class="text-uppercase text-white">write me email</h2>
+<!--                        <p class="text-white">-->
+<!--                            Bearing Void gathering light light his eavening unto dont afraid. -->
+<!--                        </p>-->
                         <div class="subcribe-form" id="mc_embed_signup">
-                            <!--<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
-                                <input name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
+                                <input name="EMAIL" placeholder="Enter your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
+<!--                                <button class="primary-btn hover d-inline">Get Started</button>-->
+                                <div class="m-5">
+<!--                                    <label for="exampleFormControlTextarea1" class="form-label">message:</label>-->
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Enter the text" :value="textReview" @input='inputReviewText'></textarea>
                                 </div>
-                                <button class="primary-btn hover d-inline">Get Started</button>
-                                <div class="info"></div>
-                            </form>-->
+                                <button class="mail-btn" type="submit">send</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -454,6 +456,7 @@
 
     <script src="{% static 'develop/js/jquery.ajaxchimp.min.js' %}"></script>
     <script src="{% static 'develop/js/theme.js' %}"></script>
+    <script src="{% static 'develop/js/index.js' %}"></script>
 
 </body>
 
