@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from rest_framework import generics
-from english_teacher.serializers import ReviewSerializer
+from .serializers import ReviewSerializer
 from django.utils.encoding import *
 from django.core.mail import EmailMessage
 from django.forms import formset_factory
@@ -20,9 +20,9 @@ def developer(request):
 
 def books(request):
     """Страница отображения всех учебников"""
-    searh_query = request.GET.get('search_books', '')
-    if searh_query:
-        books = StudyBooks.objects.filter(name__icontains=searh_query)
+    search_query = request.GET.get('search_books', '')
+    if search_query:
+        books = StudyBooks.objects.filter(name__icontains=search_query)
     else:
         books = StudyBooks.objects.all()
     context = {
@@ -34,9 +34,9 @@ def books(request):
 def book(request, book_id):
     """Страница отображения учебника с аудио()если есть"""
     book = get_object_or_404(StudyBooks, id=book_id)
-    searh_query = request.GET.get('search_audio', '')
-    if searh_query:
-        all_audio = StudyAudioBook.objects.filter(key=book_id, name__icontains=searh_query)
+    search_query = request.GET.get('search_audio', '')
+    if search_query:
+        all_audio = StudyAudioBook.objects.filter(key=book_id, name__icontains=search_query)
     else:
         all_audio = StudyAudioBook.objects.filter(key=book_id)
     context = {
@@ -48,7 +48,7 @@ def book(request, book_id):
 
 @login_required
 def video_all(request):
-    """Страница отражения всех видеолекций"""
+    """Страница отражения всех видео лекций"""
     all_video = VideoMaterial.objects.all().order_by('name')
     context = {
         'all_video': all_video,
@@ -57,7 +57,7 @@ def video_all(request):
 
 @login_required
 def video(request, video_id):
-    """Страница отражения выбранной видеолекции"""
+    """Страница отражения выбранной видео лекции"""
     video = get_object_or_404(VideoMaterial, id=video_id)
     context = {
         'video': video
@@ -75,9 +75,9 @@ def index(request):
 
 def main_info(request):
 
-    """ Главная страница зарегестрированного пользователя """
+    """ Главная страница зарегистрированного пользователя """
 
-    homework = HomeWork.objects.filter(custom_user=request.user).last()
+    home_work = HomeWork.objects.filter(custom_user=request.user).last()
     # date = datetime.datetime.now()
     date = datetime.datetime.today()
     url_user = ''
@@ -88,35 +88,35 @@ def main_info(request):
         if date.timestamp() - url.date_url_create.timestamp() < 1800:
             url_user = ModelUrlText.objects.filter(name_user=request.user).last()
 
-    all_ecxercise = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
+    all_exercise = HomeWork.objects.filter(date_next_exercise__gte=date).order_by('date_next_exercise')
     context = {
         'url_user': url_user,
-        'homework': homework,
+        'homework': home_work,
         'date': date,
-        'all_exercise': all_ecxercise
+        'all_exercise': all_exercise
     }
     return render(request, 'main_info.html', context)
 
 
 def homework(request, user_id):
     """Выбор домашнего задания ученика"""
-    homework = HomeWork.objects.filter(custom_user=request.user)[:5]
+    home_work = HomeWork.objects.filter(custom_user=request.user)[:5]
     
     context = {
-        'homework': homework,
+        'homework': home_work,
     }
     return render(request, 'homework/homework.html', context)
 
 @login_required
 def studyhomework(request, work_id):
     """Домашнее задание"""
-    homework = get_object_or_404(HomeWork, id=work_id)
-    studywords = StudyWords.objects.filter(home_work=work_id)
-    studyhomework = DetailHomeWork.objects.filter(homework=homework)
+    home_work = get_object_or_404(HomeWork, id=work_id)
+    study_words = StudyWords.objects.filter(home_work=work_id)
+    study_home_work = DetailHomeWork.objects.filter(homework=home_work)
     context = {
-        'homework': homework,
-        'studywords': studywords,
-        'studyhomework': studyhomework,
+        'homework': home_work,
+        'studywords': study_words,
+        'studyhomework': study_home_work,
     }
     return render(request, 'homework/studyhomework.html', context)
 
@@ -158,10 +158,10 @@ def send_message(request, sub, email, message):
 def self_study_word(request):
     """ Добавление слов для самостоятельного изучения"""
     user_name = request.user.id
-    StudyWords = formset_factory(StydyWordForm, extra=10)
+    study_words = formset_factory(StydyWordForm, extra=10)
     SelfStudyWordNameView = formset_factory(StydyWordNameForm, extra=1)
     if request.method == 'POST':
-        formset = StudyWords(request.POST)
+        formset = study_words(request.POST)
         name_form = 'Без названия'
         if formset.is_valid():
             if len(request.POST['form-0-name']) <= 0:
@@ -180,7 +180,7 @@ def self_study_word(request):
             study_word = word_name_save
             return HttpResponseRedirect(reverse_lazy('english_teacher:study_words', args=(study_word.id,)))
 
-    formset = StudyWords()
+    formset = study_words()
     formset_name = SelfStudyWordNameView()
     context = {
         'formset': formset,
