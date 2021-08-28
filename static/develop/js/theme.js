@@ -24,12 +24,12 @@
 	/*----------------------------------------------------*/
 	/*  MailChimp Slider
     /*----------------------------------------------------*/
-	function mailChimp() {
-		$('#mc_embed_signup').find('form').ajaxChimp();
-	}
-	mailChimp();
+	// function mailChimp() {
+	// 	$('#mc_embed_signup').find('form').ajaxChimp();
+	// }
+	// mailChimp();
 
-	$('select').niceSelect();
+	// $('select').niceSelect();
 	/* ---------------------------------------------
             Isotope js Starts
          --------------------------------------------- */
@@ -58,14 +58,14 @@
 	/*----------------------------------------------------*/
 	/* Start Magnific Pop Up
 	/*----------------------------------------------------*/
-	if ($('.img-gal').length > 0) {
-		$('.img-gal').magnificPopup({
-			type: 'image',
-			gallery: {
-				enabled: true
-			}
-		});
-	}
+	// if ($('.img-gal').length > 0) {
+	// 	$('.img-gal').magnificPopup({
+	// 		type: 'image',
+	// 		gallery: {
+	// 			enabled: true
+	// 		}
+	// 	});
+	// }
 	/*----------------------------------------------------*/
 	/*  End  Magnific Pop Up
 	/*----------------------------------------------------*/

@@ -1,4 +1,4 @@
-from english_teacher.models import ReviewsTeacher
+from .models import ReviewsTeacher
 from rest_framework import serializers
 
 

@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="{% static 'develop/vendors/nice-select/css/nice-select.css' %}" type="text/css">
         <!-- main css -->
     <link rel="stylesheet" href="{% static 'develop/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'develop/css/style_button.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'develop/css/style-preloader.css' %}" type="text/css">
+    <script type="module" src="milsymbol-2.0.0/src/milsymbol.js"></script>
+    
+
+    <script src="https://unpkg.com/vue@next"></script>
+
 
 </head>
 
@@ -72,7 +79,7 @@
                             <h2 class="text-uppercase">My name is Vladislav</h2>
                             <h5 class="text-uppercase">I'm a web developer</h5>
                             <div class="d-flex align-items-center">
-                                <a class="primary_btn" href="#"><span>Hire Me</span></a>
+                                <a class="primary_btn" href="#write_me_email"><span>Hire Me</span></a>
                                 <!--<a class="primary_btn tr-bg" href="#"><span>Get CV</span></a>-->
                             </div>
                         </div>
@@ -337,71 +344,37 @@
     </section>
     <!--================End Portfolio Area =================-->
 
-    <!--================ Start Testimonial Area =================-->
-    <!--div class="testimonial_area section_gap_bottom">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <div class="main_title">
-                        <h2>client say about me</h2>
-                        <p>Is give may shall likeness made yielding spirit a itself togeth created after sea is in beast <br>
-                             beginning signs open god you're gathering ithe</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="testi_slider owl-carousel">
-                    <div class="testi_item">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <img src="{% static 'develop/img/testimonials/t1.jpg' %}" alt="">
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="testi_text">
-                                    <h4>Elite Martin</h4>
-                                    <p>Him, made can't called over won't there on divide there male fish beast own his day third seed sixth seas unto. Saw from </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testi_item">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <img src="{% static 'develop/img/testimonials/t2.jpg' %}" alt="">
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="testi_text">
-                                    <h4>Davil Saden</h4>
-                                    <p>Him, made can't called over won't there on divide there male fish beast own his day third seed sixth seas unto. Saw from </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    <!--================ End Testimonial Area =================-->
+
 
     <!--================ Start Newsletter Area =================-->
-    <section class="newsletter_area">
+    {% verbatim %}
+
+    <section class="newsletter_area" id="write_me_email">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12">
                     <div class="subscription_box text-center">
                         <h2 class="text-uppercase text-white">write me email</h2>
-<!--                        <p class="text-white">-->
-<!--                            Bearing Void gathering light light his eavening unto dont afraid. -->
-<!--                        </p>-->
-                        <div class="subcribe-form" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
-                                <input name="EMAIL" placeholder="Enter your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
+                        <div class="subcribe-form" id="mc_embed_signup" v-cloak>
+                            <form target="_blank"  method="POST" class="subscription relative">
+                                <input name="EMAIL"  placeholder="Enter your email address"type="email" @input="inputEmailText">
 <!--                                <button class="primary-btn hover d-inline">Get Started</button>-->
                                 <div class="m-5">
 <!--                                    <label for="exampleFormControlTextarea1" class="form-label">message:</label>-->
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Enter the text" :value="textReview" @input='inputReviewText'></textarea>
+                                    <textarea class="form-control" :class="{'d-none': textMessageHide}" id="exampleFormControlTextarea1" rows="5" placeholder="Enter the text" :value="textReview" @input='inputMessageText'></textarea>
+                                    <div class="content mt-5" :class="{'d-none': preloaderActive}">
+                                        <div class="load-wrapp">
+                                            <div class="load-7">
+                                                <p translate="no" class="notranslate">Senging ... </p>
+                                                <div class="square-holder">
+                                                    <div class="square"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
                                 </div>
-                                <button class="mail-btn" type="submit">send</button>
+                                <button id="animate-send-message" class="mail-btn" :class="{'fly': addMoveSendMessage}" @click='sendMessage' type="button"><span class="notranslate">send</span></button>
                             </form>
                         </div>
                     </div>
@@ -409,6 +382,7 @@
             </div>
         </div>
     </section>
+    {% endverbatim %}
     <!--================ End Newsletter Area =================-->
 
     <!--================Footer Area =================-->
@@ -450,13 +424,16 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
   
-    <script src="{% static 'develop/js/index-button.js' %}"></script>
-    <script src="{% static 'develop/js/script-develop.js' %}" ></script>
+<!--    <script src="{% static 'develop/js/index-button.js' %}"></script>-->
+<!--    <script src="{% static 'develop/js/script-develop.js' %}" ></script>-->
 
 
     <script src="{% static 'develop/js/jquery.ajaxchimp.min.js' %}"></script>
     <script src="{% static 'develop/js/theme.js' %}"></script>
+    <!--button send email-->
     <script src="{% static 'develop/js/index.js' %}"></script>
+
+    <script type='module' src="{% static 'develop/js/send_email_developer.js' %}"></script>
 
 </body>
 

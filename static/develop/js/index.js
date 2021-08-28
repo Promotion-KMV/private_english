@@ -1,4 +1,5 @@
-$(".mail-btn").on("click touchstart", function () {
+console.log('jquery')
+$(".animate-send-message").on("click touchstart", function () {
     $(this).addClass("fly");
     that = this
     setTimeout(function() {
