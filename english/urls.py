@@ -25,6 +25,7 @@ from django.views.static import serve as mediaserve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('english_teacher.urls')),
+    path('captcha/', include('captcha.urls')),
     path('account/', include('account.urls')),
     path('udemy_course_base/', include('udemy_course_base.urls'))
 ]

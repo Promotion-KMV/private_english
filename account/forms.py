@@ -18,13 +18,15 @@ from django.template.loader import render_to_string
 
 from english_teacher.models import *
 from .views import *
+from captcha.fields import CaptchaField
 
 
 class RegisterForm(forms.ModelForm):
     """Форма регистрации нового пользователя"""
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Пароль повторно', widget=forms.PasswordInput())
-
+    captcha = CaptchaField(label='Введите текст с картинки',
+                           error_messages={'invalid': 'Неправильный текст'})
     MIN_LENGTH = 4
 
     class Meta:

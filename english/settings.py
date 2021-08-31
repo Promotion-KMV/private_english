@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'crispy_forms',
     'udemy_course_base',
+    'captcha',
 
 
 ]
