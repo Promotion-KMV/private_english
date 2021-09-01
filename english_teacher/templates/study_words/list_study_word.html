@@ -5,29 +5,46 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<h3>На этой странице отражены 3 последних словаря которые вы изучали.Вы так же можете воспользоваться поиском для того чтобы найти более старые записи.</h3>
+<h3 class="ml-4">На этой странице отражены 3 последних словаря которые вы изучали.Вы так же можете воспользоваться поиском для того чтобы найти более старые записи.</h3>
 <br>
-  <div class="d-flex">
-    <form style='max-height: 5vh;' class="d-flex m-3" action="{% url 'english_teacher:list_study_word' %}">
+  <div class="d-flex mt-5">
+    <form style='max-height: 5vh;' class="d-flex align-content-end flex-wrap m-4" action="{% url 'english_teacher:list_study_word' %}">
       <label for="search_date_start">Начальная дата</label>
       <input name="search_date_start" class="form-control me-2" type="date" placeholder="Поиск по названию" aria-label="Поиск">
       <label for="search_date_end">Конечная дата</label>
       <input name="search_date_end" class="form-control me-2" type="date" placeholder="Поиск по названию" aria-label="Поиск">
-      <button class="btn btn-outline-success" type="submit">Поиск</button>
+      <button class="btn btn-outline-success mt-1" type="submit">Поиск</button>
     </form>
     <br>
   </div>
   {% for list in list_words_name  %}
     <div style="padding-left: 2vw;">
-      <p><i>Ранее изученные вами слова</i> : <strong>{{list.name}} от {{ list.date_study }}</strong><a href="{% url 'english_teacher:study_words' list.id %}">(Повторить слова)</a></p>
+      <p style="max-width: 100%"><i>Ранее изученные вами слова</i> : <strong>{{list.name}} от {{ list.date_study }}</strong><a href="{% url 'english_teacher:study_words' list.id %}">(Повторить слова)</a></p>
       <h6>Слова которые вы изучали:</h6>
       <div style='display: flex;' id="{{list.id}}">
-        {% for i in list.study_word_name.all %}
-            <p>{{i.english_word}} -- {{i.rus_word}}, &nbsp;</p>
-        {% endfor %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">English</th>
+              <th scope="col">Russian</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in list.study_word_name.all %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.english_word}}</td>
+              <td>{{i.rus_word}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>  
     <hr>
   {% endfor %}
-  <button class="btn btn-danger mt-5" style="margin-left: 47%;"><a style='text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:self_study_words' %}">Создать новый словарь</a></button>
+  <div class="row">
+    <button class="btn btn-danger mt-3 w-50 mx-auto"><a style=' text-decoration: none; color: #EEEEECFF;' href="{% url 'english_teacher:self_study_words' %}">Создать новый словарь</a></button>
+  </div>
 {% endblock  %}
