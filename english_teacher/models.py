@@ -76,6 +76,19 @@ class VideoMaterial(models.Model):
         verbose_name = 'Видео урок'
         verbose_name_plural = 'Видео уроки'
 
+class VideoMaterialYoutube(models.Model):
+    """Модель видеоматериалов на канале YouTube"""
+    name = name = models.CharField(max_length=100)
+    url_youtube = models.URLField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Видео урок'
+        verbose_name_plural = 'Видео уроки'
+
 
 class StudyBooks(models.Model):
     """Модель учебников"""
@@ -193,3 +206,5 @@ class Offer(models. Model):
     class Meta:
         verbose_name = 'Предложениe'
         verbose_name_plural = 'Предложения'
+
+

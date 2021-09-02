@@ -49,7 +49,7 @@ def book(request, book_id):
 @login_required
 def video_all(request):
     """Страница отражения всех видео лекций"""
-    all_video = VideoMaterial.objects.all().order_by('name')
+    all_video = VideoMaterialYoutube.objects.all().order_by('name')
     context = {
         'all_video': all_video,
     }
@@ -58,7 +58,7 @@ def video_all(request):
 @login_required
 def video(request, video_id):
     """Страница отражения выбранной видео лекции"""
-    video = get_object_or_404(VideoMaterial, id=video_id)
+    video = get_object_or_404(VideoMaterialYoutube, id=video_id)
     context = {
         'video': video
     }

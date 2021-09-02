@@ -3,11 +3,14 @@
 {% load static %}
 
 {% block content %}
-<div style="text-align: center;" class='p-3'>
+    <div class="video_youtube" >
+        <iframe class="view_video_youtube" src="{{ video.url_youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+<!--<div style="text-align: center;" class='p-3'>
     <h3>{{ video.name }}</h3>
     <video style="width: 70vw; height: 70vh;" id="video-player" preload="auto" controls>
         <source src="{{ video.video.url }}" type="video/mp4">
-    </video>
+    </video>-->
 <!--     <progress id="progress" style='width: 70vw;' max="100" value='0'></progress>
    <div>
         <button id="play">Play</button>

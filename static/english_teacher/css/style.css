@@ -55,6 +55,35 @@ label[class~="small_menu"] {
     font-size: 100%;
 }
 
+.video_youtube {
+    text-align: center;
+    margin-top: 5em;
+}
+
+.view_video_youtube {
+    width: 70%;
+    height: 40em;
+}
+
+@media screen and (max-width: 950px) {
+    .view_video_youtube {
+        width: 80%;
+        height: 40em;
+    }
+}
+@media screen and (max-width: 500px) {
+    .view_video_youtube {
+        width: 95%;
+        height: 30em;
+    }
+}
+@media screen and (max-height: 850px) {
+    .video_youtube {
+        margin-top: 1em;
+    }
+}
+
+
 /* @media screen and (min-width: 1500px) {
     .label_self_study {
         margin: auto;

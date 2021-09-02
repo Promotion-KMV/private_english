@@ -37,6 +37,10 @@ class HomeWorkAdmin(admin.ModelAdmin):
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('email', 'id', 'first_name', 'last_name', 'age', 'count_cost_lessons')
 
+@admin.register(VideoMaterialYoutube)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url_youtube')
+
 
 @admin.register(ReviewsTeacher)
 class ReReviewsTeacherAdmin(admin.ModelAdmin):
@@ -54,9 +58,9 @@ class StudyBooksAdmin(admin.ModelAdmin):
     list_display = ('name', 'book', 'image')
 
 
-@admin.register(VideoMaterial)
-class VideoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'video')
+# @admin.register(VideoMaterial)
+# class VideoAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'video')
 
 
 class SelfStudyWordsInline(admin.TabularInline):
