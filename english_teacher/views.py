@@ -100,7 +100,7 @@ def main_info(request):
 
 def homework(request, user_id):
     """Выбор домашнего задания ученика"""
-    home_work = HomeWork.objects.filter(custom_user=request.user)[:5]
+    home_work = HomeWork.objects.filter(custom_user=request.user)
     
     context = {
         'homework': home_work,
